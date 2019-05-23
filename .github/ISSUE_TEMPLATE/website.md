@@ -1,6 +1,6 @@
 ---
 name: Website
-about: Use to report issues pertaining to the PRO website (home & entry pages, searches,
+about: Select for issues pertaining to the PRO website (home & entry pages, searches,
   SPARQL).
 title: ''
 labels: Web Site
