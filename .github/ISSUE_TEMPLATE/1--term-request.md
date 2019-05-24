@@ -1,6 +1,6 @@
 ---
 name: 1. Term Request
-about: Select to request a new PRO term, or to revise an existing term
+about: Request new PRO term(s) or suggest revision of existing term(s)
 title: 'Term issue: '
 labels: ''
 assignees: nataled

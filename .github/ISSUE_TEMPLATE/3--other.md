@@ -1,6 +1,6 @@
 ---
 name: 3. Other
-about: Describe this issue template's purpose here.
+about: Issues not pertaining to terms or website
 title: ''
 labels: ''
 assignees: ''

@@ -1,7 +1,6 @@
 ---
 name: 2. Website
-about: Select for issues pertaining to the PRO website (home & entry pages, searches,
-  SPARQL).
+about: Issues pertaining to the PRO website (home/entry pages, searches, SPARQL)
 title: ''
 labels: Web Site
 assignees: nataled
