@@ -6,7 +6,7 @@ django-cors-headers==2.4.0
 djangorestframework==3.9.0
 djangorestframework-xml==1.4.0
 get==2018.11.19
-httpie==1.0.2
+httpie==1.0.3
 idna==2.8
 post==2018.11.20
 public==2018.11.20
