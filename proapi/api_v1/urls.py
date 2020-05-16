@@ -1,0 +1,42 @@
+from django.conf.urls import include, url
+from . import views
+
+
+urlpatterns = [
+    url(r'^$', views.proSearch, name = "proSearch"),
+    url(r'^pros/$', views.proSearch, name = "proSearch"),
+    url(r'^pros/(?P<proIds>.+)/$', views.getPROByIDs, name ="getPROByIDs"),
+    url(r'^proforms/modification/$', views.getAllModifiedForms, name='getAllModifiedForms'),
+    url(r'^proforms/modification/phosphorylated/$', views.getPhosphorylatedForms, name='getPhosphorylatedFroms'),
+    url(r'^proforms/modification/methylated/$', views.getMethylatedForms, name='getMethylatedForms'),
+    url(r'^proforms/modification/acetylated/$', views.getAcetylatedForms, name='getAcetylatedForms'),
+    url(r'^proforms/modification/ubiquitinated/$', views.getUbiquitinatedForms, name='getUbiquitinatedForms'),
+    url(r'^proforms/modification/glycosylated/$', views.getGlycosylatedForms, name='getGlycosylatedForms'),
+    url(r'^proforms/orthoisoform/$', views.getOrthoIsoForms, name='getOrthoIsoForms'),
+    url(r'^proforms/orthomodform/$', views.getOrthoModForms, name='getOrthoModForms'),
+    url(r'^proforms/sequence/$', views.getSequenceForms, name='getSequenceForms'),
+    url(r'^proforms/organism-sequence/$', views.getOrganismSequenceForms, name='getOrganismSequenceForms'),
+    url(r'^proevos/family/$', views.getFamilyForms, name='getFamilyForms'),
+    url(r'^proevos/gene/$', views.getGeneForms, name='getGeneForms'),
+    url(r'^proevos/organism-gene/$', views.getOrganismGeneForms, name='getOrganismGeneForms'),
+    url(r'^procomps/species-specific/$', views.getSpeciesSpecificComplexForms, name='getSpeciesSpecificComplexForms'),
+    url(r'^procomps/species-non-specific/$', views.getSpeciesNonSpecificComplexForms, name='getSpeciesNonSpecificComplexForms'),
+    url(r'^dbxrefs/EcoCyc_ID/$', views.getEcoCycIDs, name= 'getEcoCycIDs'),
+    url(r'^dbxrefs/HGNC_ID/$', views.getHGNCIDs, name= 'getHGNCIDs'),
+    url(r'^dbxrefs/MGI_ID/$', views.getMGIIDs, name= 'getMGIIDs'),
+    url(r'^dbxrefs/Ontology_ID/$', views.getOntologyIDs, name= 'getOntologyIDs'),
+    url(r'^dbxrefs/PANTHER_ID/$', views.getPANTHERIDs, name= 'getPANTHERIDs'),
+    url(r'^dbxrefs/PIRSF_ID/$', views.getPIRSFIDs, name= 'getPIRSFIDs'),
+    url(r'^dbxrefs/PMID/$', views.getPMIDs, name= 'getPMIDs'),
+    url(r'^dbxrefs/Reactome_ID/$', views.getReactomeIDs, name= 'getReactomeIDs'),
+    url(r'^dbxrefs/NCBITaxon_ID/$', views.getNCBITaxonIDs, name= 'getNCBITaxonIDs'),
+    url(r'^dbxrefs/UniProtKB_ID/$', views.getUniProtKBIDs, name= 'getUniProtKBIDs'),
+    url(r'^paf/(?P<proIds>.+)/$', views.getPAFByIDs, name="getPAFByIDs"),
+    url(r'^obo/(?P<proIds>.+)/$', views.getOBOByIDs, name="getOBOByIDs"),
+    url(r'^dag/parent/(?P<proIds>.+)/$', views.getParentByIDs, name="getParentByIDs"),
+    url(r'^dag/ancestor/(?P<proIds>.+)/$', views.getAncestorByIDs, name="getAncestorByIDs"),
+    url(r'^dag/children/(?P<proIds>.+)/$', views.getChildrenByIDs, name="getChildrenByIDs"),
+    url(r'^dag/descendant/(?P<proIds>.+)/$', views.getDescendantByIDs, name="getDescendantByIDs"),
+    url(r'^dag/hierarchy/(?P<proId>.+)/$', views.getHierarchyByID, name="getHierarchyByID"),
+]
+
