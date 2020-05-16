@@ -1,0 +1,29 @@
+########### 
+# FQ1. get UniProt AC and Mnemonic for PRO term. 
+########### 
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> 
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX ud: <http://purl.uniprot.org/database/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+
+SELECT DISTINCT ?PRO_term ?PRO_label ?PRO_category ?UniProt_protein STR(?UniProt_mnemonic)
+WHERE
+{
+    VALUES ?PRO_term {obo:PR_P34268}
+    ?PRO_term rdfs:label ?_PRO_label .
+    ?PRO_term rdfs:comment ?_PRO_category .
+    BIND(STR(?_PRO_label) AS ?PRO_label) .
+    BIND(STRAFTER(STRBEFORE(STR(?_PRO_category), "."), "=") AS ?PRO_category) .
+  
+    SERVICE <http://sparql.uniprot.org/sparql> {
+        ?UniProt_protein up:mnemonic ?UniProt_mnemonic  .
+        ?UniProt_protein  rdfs:seeAlso ?PRO_term .
+        ?PRO_term 
+        up:database <http://purl.uniprot.org/database/PRO> ;
+            a up:Resource .
+  }
+}
+

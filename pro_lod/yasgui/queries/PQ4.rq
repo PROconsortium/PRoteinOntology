@@ -1,0 +1,26 @@
+########### 
+# PQ4. Retrieve proteoforms associated with disease progression.
+########### 
+ 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX paf: <http://pir.georgetown.edu/pro/paf#>
+
+SELECT distinct ?PRO_term ?PRO_name ?Ontology_ID ?Ontology_term
+FROM <http://pir.georgetown.edu/pro/paf>
+WHERE
+{
+    ?x a rdf:Statement .
+    ?x rdf:subject ?PRO_term .
+    ?x rdf:object ?xo .
+    ?xo paf:ontologyID ?Ontology_ID .
+    ?xo paf:ontologyTerm ?Ontology_term .
+    ?x rdf:predicate [ paf:relation "associated_with_disease_progression"] .
+    ?PRO_term paf:objectTerm ?PRO_name .
+}
+

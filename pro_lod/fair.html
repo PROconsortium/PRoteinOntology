@@ -1,0 +1,451 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Protein Ontology Linked Open Data - FAIRness</title>
+	<link href="https://proconsortium.org/styles.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="api/dist/swagger-ui.css" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+</head>
+
+<body>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%"">
+		<tr>
+			<td width=" 100%">
+		<table cellSpacing="0" cellPadding="0" width="100%" background="images/bannerBg.png" border="0">
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap><img src="images/empty_line.GIF" width="1"
+						height="3"></td>
+			</tr>
+			<tr>
+				<td><img src="images/empty_line.GIF" width="8" height="76"></td>
+				<td align=center>
+					<img src="images/empty_line.GIF" width="1" height="3"><br />
+					<img src="images/empty_line.GIF" width="3" height="1">
+					<a href="https://proconsortium.org/pro.shtml">
+						<img alt="back to PRO homepage" src="images/PROlogofinalEDGclear.png" width="140" heightxx="42"
+							border="0">
+					</a>
+					<img src="images/empty_line.GIF" width="3" height="1"><br />
+					<img src="images/empty_line.GIF" width="1" height="2">
+				</td>
+				<td width="80%">
+					<table border="0" cellPadding="0" cellSpacing="0" class="PRO_banner1">
+						<tr>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+							<td><img src="images/hm.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro.shtml"
+									class="ProMenu">Home</a></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/browse.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_browse.shtml"
+									class="ProMenu">Browse</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/search.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_search.shtml"
+									class="ProMenu">Search</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sparql.png" width="18">&nbsp;</td>
+							<!-- <td align="center" nowrap><a href="https://proconsortium.org/pro_sparql.shtml"
+									class="ProMenu" style="color:#FF9933;">SPARQL</a> </td>
+							<td></td> -->
+							<td align="center" nowrap><a href="index.html"
+								class="ProMenu" style="color:#FF9933;">LOD</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sta.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/cgi-bin/sta_pro"
+									class="ProMenu">Statistics</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/download.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_download.shtml"
+									class="ProMenu">Download</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+
+				<td align="center">
+					<table border="0" cellPadding="3" cellSpacing="3" class="nrm02">
+						<tr>
+							<form name="prosearch" method="get"
+								action="https://proconsortium.org/cgi-bin/textsearch_pro">
+								<td nowrap>
+									<input type="text" name="query0" size="30" class="nrm11"
+										placeholder="PR:000025934, smad">
+								</td>
+								<td><input type="image" name="search" src="images/searchWhite.png">
+									<input type="hidden" name="field0" value="ALLFLDS">
+								</td>
+								<td><img src="images/empty_line.GIF" width="4">
+								</td>
+							</form>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor="#EEEEEE"><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td>
+					<table border="0" cellPadding="3" cellSpacing=3 class=PRO_banner2>
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/cgi-bin/race_pro">RACE-PRO</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="http://purl.obolibrary.org/obo/pr/tracker"
+									target=_b>PRO tracker</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://pir17.georgetown.edu/confluence/display/PROWIKI/Home"
+									target=_b>Wiki</a></TD>
+							<td><img src="images/empty_line.GIF" width="5"></td>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor=#EEEEEE><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td align=right>
+					<table border="0" cellPadding="3" cellSpacing="3" class="PRO_banner2">
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org//pro_cst.shtml">PRO Consortium</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org//pro_pub.shtml">Publications</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org//pro_dcmtt.shtml">Documentation</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap>
+					<img src="images/empty_line.GIF" width="1" height="3"></td>
+			</tr>
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+		</table>
+
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%" class="nrm04">
+						<tbody>
+							<tr>
+								<td align="center" class="text-primary">
+									<h3><b>Protein Ontology Linked Open Data</b></h3>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="padding: 1em 2em 0em 2em ; margin: 5em 5em 5em 5em auto;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" class="nrm04">
+							<tbody>
+								<tr>
+									<td>
+										<nav class="navbar navbar-expand-sm navbar-dark">
+											<!-- Links -->
+											<ul class="navbar-nav">
+												<li class="nav-item">
+													<a class="nav-link" href="index.html">Introduction</a>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">RDF Model
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="rdf.html#uri">PRO Uniform Resource Identifiers (URIs)</a>
+														<a class="dropdown-item" href="rdf.html#pro_cat">Types of PRO Terms</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Dataset Description
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="dataset.html#void">VoID</a>
+														<a class="dropdown-item" href="dataset.html#linkset">Linked Dataset</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Data Access
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="release.html">Data
+															Dumps</a>
+														<a class="dropdown-item"
+															href="https://sparql.proconsortium.org/virtuoso/fct/">Faceted
+															Browser</a>
+
+														<a class="dropdown-item" href="api.html">RESTful
+															APIs</a>
+														<a class="dropdown-item" href="yasgui.html">SPARQL
+															GUI</a>
+													</div>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link active " href="fair.html">FAIRness</a>
+												</li>
+											</ul>
+										</nav>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<article id="pro_lod">
+							<div style="margin: 2em 2em 2em 2em;">
+								<div class="article_title">FAIRness Assessment for PRO</div> <br>
+								<p>
+									The guiding principles of <a
+										href="https://www.go-fair.org/fair-principles/">FAIR</a> data aim to facilitate
+									the discovery, integration and analysis of relevant datasets by humans and machines
+									by making them Findable (F), Accessible (A), Interoperable (I) and Reusable
+									(R) (<a href="https://www.nature.com/articles/sdata201618">Wilkinson, M. D. et
+										al</a>).
+
+
+									<!-- <p>To be Findable (F):</p>	
+<p class="tab">F1. (meta)data are assigned a globally unique and persistent identifier.</p>
+<p class="tab">F2. data are described with rich metadata (defined by R1 below).</p>
+<p class="tab">F3. metadata clearly and explicitly include the identifier of the data it describes.</p>
+<p class="tab">F4. (meta)data are registered or indexed in a searchable resource.</p>
+<p>To be Accessible (A):</p>
+<p class="tab">A1. (meta)data are retrievable by their identifier using a standardized communications protocol.</p>
+<p class="tab2">A1.1 the protocol is open, free, and universally implementable.</p>
+<p class="tab2">A1.2 the protocol allows for an authentication and authorization procedure, where necessary.</p>
+<p class="tab">A2. metadata are accessible, even when the data are no longer available.</p>
+<p>To be Interoperable (I):</p>
+<p class="tab">I1. (meta)data use a formal, accessible, shared, and broadly applicable language for knowledge 
+representation.</p>
+<p class="tab">I2. (meta)data use vocabularies that follow FAIR principles.</p>
+<p class="tab">I3. (meta)data include qualified references to other (meta)data.</p>
+<p>To be Reusable (R):</p>
+<p class="tab">R1. meta(data) are richly described with a plurality of accurate and relevant attributes.</p>
+<p class="tab2">R1.1. (meta)data are released with a clear and accessible data usage license.</p>
+<p class="tab2">R1.2. (meta)data are associated with detailed provenance.</p>
+<p class="tab2">R1.3. (meta)data meet domain-relevant community standards.</p> -->
+
+									As a community resource, we strive to produce FAIR resources, disseminate regular
+									updates of our data, support multiple methods for accessing, querying and
+									downloading the data in various formats and provide documentation both for
+									scientists and programmers. The formal <a
+										href="https://www.nature.com/articles/sdata2018118">FAIRness assessment</a>
+									results for PRO are presented below.</p><br>
+								<table class="table table-bordered table-sm">
+									<thead>
+										<tr class="table-primary">
+											<th width="10%">
+												Metric
+											</th>
+											<th width="25%">
+												Requirement
+											</th>
+											<th>
+												Resource
+											</th>
+											<th>
+												Resource data/content
+											</th>
+										</tr>
+										<tr>
+											<td rowspan="2" style="vertical-align: middle;">F1A</td>
+											<td rowspan="2" style="vertical-align: middle;">IRI for a registered
+												identifier scheme for your resource's IRI</td>
+											<td>PURL schema</td>
+											<td>PURL schema</td>
+										</tr>
+										<tr>
+											<td>http://purlz.org</td>
+											<td>http://purlz.org</td>
+										</tr>
+										<tr>
+											<td rowspan="2" style="vertical-align: middle;">F1B</td>
+											<td rowspan="2" style="vertical-align: middle;">IRI to a document describing
+												the persistency policy for the identifier of this data</td>
+											<td rowspan="2" style="vertical-align: middle;">http://purlz.org</td>
+											<td>http://purlz.org</td>
+										</tr>
+										<tr>
+											<td>https://lod.proconsortium.org/rdf.html#uri</td>
+										</tr>
+										<tr>
+											<td rowspan="2" style="vertical-align: middle;">F2</td>
+											<td>IRI for machine-readable metadata for the resource</td>
+											<td>https://lod.proconsortium.org/releases/latest/void.ttl</td>
+											<td>https://lod.proconsortium.org/PR_000025934</td>
+										</tr>
+										<tr>
+											<td>IRI to file format for this metadata</td>
+											<td>https://www.w3.org/TR/void/</td>
+											<td>https://www.w3.org/TR/void/</td>
+										</tr>
+										<tr>
+											<td>F3</td>
+											<td>Is the resource identifier specified in the metadata?</td>
+											<td>Yes</td>
+											<td>Yes</td>
+										</tr>
+										<tr>
+											<td rowspan="2" style="vertical-align: middle;">F4</td>
+											<td>URL to a search engine indexing your resource</td>
+											<td>https://www.google.com</td>
+											<td>https://www.google.com</td>
+										</tr>
+										<tr>
+											<td>Search query/terms</td>
+											<td>"Protein Ontology" -> First hit</td>
+											<td>"PR_000025934" -> First hit</td>
+										</tr>
+										<tr>
+											<td rowspan="4" style="vertical-align: middle;">A1.1</td>
+											<td rowspan="2" style="vertical-align: middle;">URL to the description of the protocol</td>
+											<td>HTTP</td>
+											<td>HTTP</td>
+										</tr>
+										<tr>
+											<td>https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol</td>
+											<td>https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol</td>
+										</tr>
+										<tr>
+											<td>Is the protocol open?</td>
+											<td>Yes</td>
+											<td>Yes</td>
+										</tr>
+										<tr>
+												<td>Is the protocol (royalty) free?</td>
+												<td>Yes</td>
+												<td>Yes</td>
+										</tr>
+										<tr>
+											<td>A1.2</td>
+											<td>Is authorization required to access the content of your resource?</td>
+											<td>No</td>
+											<td>No</td>
+										</tr>
+										<tr>
+											<td>A2</td>
+											<td>URL to metadata longevity plan</td>
+											<td>https://lod.proconsortium.org/release.html</td>
+											<td>Provided at the dataset level</td>
+										</tr>
+										<tr>
+											<td rowspan="3" style="vertical-align: middle;">I1</td>
+											<td rowspan="3" style="vertical-align: middle;">URL to a specification language</td>
+											<td>RDFS and OWL ontology</td>
+											<td>RDFS and OWL ontology</td>
+										</tr>
+										<tr>
+											<td>https://www.w3.org/TR/rdf-schema/</td>
+											<td>https://www.w3.org/TR/rdf-schema/</td>
+										</tr>
+										<tr>
+											<td>https://www.w3.org/TR/owl2-overview/</td>
+											<td>https://www.w3.org/TR/owl2-overview/</td>
+										</tr>
+										<tr>
+											<td rowspan="3" style="vertical-align: middle;">I2</td>
+											<td rowspan="3" style="vertical-align: middle;">Maximum 3 IRIs for vacabularies used within the (meta)data</td>
+											<td>http://purl.org/dc/terms/</td>
+											<td>dcterms:title "PRO Linked Open Data"@en </td>
+										</tr>
+										<tr>
+											<td>http://www.w3.org/ns/dcat#</td>
+											<td>dcat:keyword "Protein Ontology"^^xsd:string, "Linked Open Data"^^xsd:string </td>
+										</tr>
+										<tr>
+											<td>http://www.w3.org/2004/02/skos/core#</td>
+											<td>void:linkPredicate skos:closeMatch</td>
+										</tr>
+										<tr>
+											<td>I3</td>
+											<td>URL to a LinkSet (https://www.w3.org/TR/void/) for the resource</td>
+											<td>https://lod.proconsortium.org/releases/latest/void.ttl</td>
+											<td>Provided at the dataset level</td>
+										</tr>
+										<tr>
+											<td>R1.1</td>
+											<td>URL to license/terms of use for the resource</td>
+											<td>https://creativecommons.org/licenses/by/4.0/</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td rowspan="6" style="vertical-align: middle;">R1.2</td>
+											<td rowspan="3" style="vertical-align: middle;">Maximum 3 IRIs used to describe the provenance of the resource</td>
+											<td>http://purl.org/dc/terms/</td>
+											<td>dcterms:accrualPeriodicity freq:quarterly </td>
+										</tr>
+										<tr>
+											<td>http://xmlns.com/foaf/0.1/</td>
+											<td>dcterms:publisher [ foaf:page <https://proconsortium.org/pro_cst.shtml> ]</td>
+										</tr>
+										<tr>
+											<td>http://purl.org/pav/</td>
+											<td>pav:hasCurrentVersion :prolod60_0 </td>
+										</tr>
+										<tr>
+											<td rowspan="3" style="vertical-align: middle;">Maximum 3 IRIs used to describe domain information</td>
+											<td>http://purl.obolibrary.org/obo/pr#</td>
+											<td>oboInOwl:hasSynonymType  pr:PRO-short-label </td>
+										</tr>
+										<tr>
+											<td>http://purl.obolibrary.org/obo/</td>
+											<td>obo:PR_Q7TMZ5</td>
+										</tr>
+										<tr>
+											<td>http://www.geneontology.org/formats/oboInOwl#</td>
+											<td>oboInOwl:hasSynonymType  pr:PRO-short-label</td>
+										</tr>
+										<tr>
+											<td>R1.3</td>
+											<td>IRI that represents certification from a recognized authoriry</td>
+											<td>http://yummydata.org</td>
+											<td>Provided at the dataset level</td>
+										</tr>
+									</thead>
+								</table>
+
+							</div>
+						</article>
+					</div>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

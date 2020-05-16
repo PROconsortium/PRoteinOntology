@@ -1,0 +1,453 @@
+
+// Link Related
+a:active {  color:#336699 ; text-decoration: none}
+a:link {  color:#336699 ; text-decoration: none}
+a:visited { color: #336699; text-decoration: none }
+a:hover {  color: #404040; text-decoration: underline}
+a.nounderline{text-decoration:none}
+
+// Where am I
+a.titleLink:active    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 15px; color:#62A1D2; text-decoration:none;}
+a.titleLink:link    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 15px; color:#62A1D2; text-decoration:none;}
+a.titleLink:visited {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 15px; color:#62A1D2; text-decoration:none;}
+a.titleLink:hover   {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 15px; color:#FFAA00; text-decoration:underline;}
+
+a.footer:link    {color:#62A1D2; background-color:transparent; text-decoration:none;}
+a.footer:visited {color:#62A1D2; background-color:transparent; text-decoration:none;}
+a.footer:hover {color:#FFAA00; background-color:transparent; text-decoration:underline;}
+
+a.footerMenu:active    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 11px; font-weight: bold; color:#359BE5; text-decoration:none;}
+a.footerMenu:link    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 11px; font-weight: bold; color:#359BE5; text-decoration:none;}
+a.footerMenu:visited {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 11px; font-weight: bold; color:#359BE5; text-decoration:none;}
+a.footerMenu:hover   {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 11px; font-weight: bold; color:#FFAA00; text-decoration:underline;}
+
+
+
+a.footerMenu2:active    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#FFFFFF; text-decoration:none;}
+a.footerMenu2:link    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#FFFFFF; text-decoration:none;}
+a.footerMenu2:visited {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#FFFFFF; text-decoration:none;}
+a.footerMenu2:hover   {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#FFAA00; text-decoration:underline;}
+
+
+
+
+a.footerMenu3:active    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#359BE5; text-decoration:none;}
+a.footerMenu3:link    {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#359BE5; text-decoration:none;}
+a.footerMenu3:visited {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#359BE5; text-decoration:none;}
+a.footerMenu3:hover   {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#FFAA00; text-decoration:underline;}
+
+
+.footerbcc {font-family: lucida sans unicode, lucida, Verdana, Tahoma, Arial, helvetica; 
+		 font-size: 10px; font-weight: bold; color:#FFFFFF; text-decoration:none;}
+
+
+
+// Document 
+.nrm01 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 10px;}
+.nrm02 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 13px;}
+.nrm03 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 14px;}
+.nrm04 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 15px;}
+.nrm05 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 16px;}
+.nrm06 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 17px;}
+.nrm07 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 18px;}
+
+.nrm20 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 20px;}
+.nrm28 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 24px;}
+
+
+
+
+.sml01 {font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 2px;}
+.sm001 {font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 1px;}
+
+
+.nrm6 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 6px;}
+.nrm7 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 7px;}
+.nrm8 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 8px;}
+.nrm9 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 9px;}
+.nrm10 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 10px;}
+.nrm11 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 11px;}
+.nrm12 { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 12px;}
+
+.nrm10b { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;  font-weight: bold;font-size: 10px;}
+.nrm11b { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;  font-weight: bold;font-size: 11px;}
+.nrm12b { font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;  font-weight: bold;font-size: 12px;}
+
+
+
+font.bold02{font-family:verdana, Tahoma, arial, helvetica, sans-serif; font-size:12px; font-weight: bold; color: #000000}
+
+
+.gradienttile {
+background-image: url("../images/bgcolor.png");
+}
+.gradienttileBlue {
+background-image: url("../images/bgcolor.gif");
+background-color: #70B0EF;
+color: #efefef;
+font-family: Verdana,Tahoma,sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 8pt;
+text-decoration: none;
+}
+
+
+table.docTitle {font-family: Arial, Helvetica, sans-serif; font-size: 15px; COLOR:#404040}
+
+
+table.boxTable {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 12px;
+	color:#cccccc;
+	background-color:#FFFFFF;
+	border:1px solid #2283bf;
+	margin-bottom:1px;
+}
+table.boxTable td{
+	color:#000000;
+}
+
+table.result {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+	color:#000000;font-size:100%;
+	background-color:#ffffff;
+	border:1px solid;
+	margin-bottom:1px;
+}
+
+.tableLeft { 
+		font-family:  Verdana, Tahoma, Arial, Helvetica, sans-serif;
+		font-weight : bold; 
+		font-size: 12px;
+		color: #336699;
+		background-color: #c1d0df;
+}
+
+
+
+
+.tableTitle2
+{
+		font-family:  Verdana, Tahoma, Arial, Helvetica, sans-serif;
+		font-weight : bold; 
+		font-size: 14px;
+		color: #336699;
+		background-color: #DDDDDD;
+}
+
+
+
+.tableLeft2 { 
+		font-family:  Verdana, Tahoma, Arial, Helvetica, sans-serif;
+		font-weight : bold; 
+		font-size: 12px;
+		color: #336699;
+		background-color: #ddeeff;
+}
+
+
+
+
+
+
+
+
+.tableTitle { 
+		font-family:  Verdana, Tahoma, Arial, Helvetica, sans-serif;
+		font-weight : bold; 
+		font-size: 14px;
+		color: #2c2c2c;
+}
+
+
+
+
+
+th.right
+{
+	font-family: verdana,helvetica,arial,sans-serif;
+        color:#003366;
+	background-color:#A0BCDE;
+        padding: 5px 5px 5px 10px;
+}
+
+th.rightHelp
+{
+	font-family: verdana,helvetica,arial,sans-serif;
+        color:#003366;
+	background-color:#336699;
+        padding: 5px 5px 5px 10px;
+}
+
+.pageTitle { 
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+	font-size: 19px; 
+	FONT-WEIGHT: bold; 
+	COLOR: #98B0C8; 
+}
+
+.search {
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: 12px; 
+	FONTSIZE: 12px; 
+	COLOR: #336699; 
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+}
+.search2 {
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: 12px; 
+	FONTSIZE: 12px; 
+	COLOR: white; 
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+}
+.HomeSearchBox {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+	font-size: 12px;
+	width:300px;height:50px
+}
+.searchBanner {font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 11px; WIDTH: 150px;  HEIGHT:18px;
+
+.searchBannerHome {font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; font-size: 11px; WIDTH: 230px;  HEIGHT:18px;
+
+p.description {
+font-size: 120%; fontsize: 10pt;
+}
+
+
+p.intro
+{
+font-size:100%;
+font-weight:bold;
+color:#000000;
+background-color:transparent;
+margin-top:10px;
+}
+
+pre
+{
+font-family:"Courier New",monospace;
+font-size:110%;
+margin-left: 0;
+margin-bottom: 0;
+}
+
+
+hr
+{
+background-color:transparent;
+color:#000000;
+height:1px;
+}
+
+
+
+.footer {
+font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+font-size: 10px;
+color:#404040
+}
+.footer2 {
+font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+font-size: 8pt; 
+color:#6e6e6e
+}
+
+.footer2 a:link{ 
+	color:#eeeeee;
+//	text-decoration:none}
+}
+.footer2 a:visited{ 
+	color:#eeeeee;
+//	text-decoration:none}
+}
+.footer2 a:hover{ 
+	color:#FFAA00;
+	text-decoration:underline}
+}
+
+.footer3 {
+font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif; 
+font-size: 8pt; 
+color:#6e6e6e
+}
+
+.footer3 a:link{ 
+	color:#336699;
+	text-decoration:none}
+}
+.footer3 a:visited{ 
+	color:#336699;
+	text-decoration:none}
+}
+.footer3 a:hover{ 
+	color:#FFAA00;
+	text-decoration:underline}
+}
+
+
+
+.trans {background-color:transparent}
+table.result
+{
+color:#000000;
+background-color:#ffffff;
+border:1px solid #333333;
+
+}
+
+th.result
+{
+color:#ffffff;
+background-color:#eeeeee;
+padding-bottom:5px;
+}
+
+tr.resultEvenRow
+{
+background-color:#eeeeee;
+padding-bottom:5px;
+}
+
+td.result
+{
+color:#000000;
+background-color:#FFFFFF;
+}
+
+td.tableHead{
+color:#000000;
+background-color:#c1d0df;
+text-align:left; 
+font-weight:bold; 
+}
+
+
+
+
+.hide2 {
+position:absolute; 
+visibility:hidden;
+}
+.show2 {
+position:absolute; 
+visibility:visible;
+}
+
+.title {
+	FONT-SIZE: 16px; 
+	COLOR: #336699; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+
+
+.courier8 {
+	FONT-SIZE: 8px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+
+.courier9 {
+	FONT-SIZE: 9px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+
+.courier10 {
+	FONT-SIZE: 10px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+
+.courier11 {
+	FONT-SIZE: 11px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+
+.courier12 {
+	FONT-SIZE: 12px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+.courier13 {
+	FONT-SIZE: 13px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+.courier14 {
+	FONT-SIZE: 14px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+.courier15 {
+	FONT-SIZE: 15px; 
+	COLOR: black; 
+	FONT-FAMILY: Courier New, Courier, mono;
+}
+
+
+.button{
+	background-color: #a3b8cc;
+	color: #000000;
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.buttonGray{
+	background-color: #eeeeee;
+	color: #000000;
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	cursor: pointer;
+}
+
+
+.comboBox {
+	background-color: #eeeeee;
+	color: #000000;
+	font-size: 13px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	cursor: pointer;
+}
+
+
+Input.textBox{
+	background-color: #F1F1F1;
+	font-size: 13px;
+	height: 21px;
+
+	border: 1px solid #A2A1A0;	
+}
+Input.brownBox{
+	background-color: #ccaa80;
+	height: 19px;
+	border: 1px solid #995500;	
+}
+
+Input.inputBoxSmall{
+	background-color: #eeeeee;
+	border: 1px solid #A2A1A0;	
+	width: 50px;
+}
+.listtext {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000}
+

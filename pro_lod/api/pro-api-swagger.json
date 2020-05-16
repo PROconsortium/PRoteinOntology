@@ -1,0 +1,4714 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "PRO RESTful APIs",
+    "description": "RESTful APIs for Protein Ontology",
+    "version": "1.0.0",
+    "termsOfService": "https://proconsortium.org/pirwww/about/linkpir.shtml",
+    "contact": {
+      "name": "API Support",
+      "url": "https://github.com/PROconsortium"
+    },
+    "license": {
+      "name": "License - CC BY 4.0",
+      "url": "http://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://research.bioinformatics.udel.edu/PRO_API/V1",
+      "description": "Main (production) server"
+    }
+  ],
+  "paths": {
+    "/pros": {
+      "get": {
+        "tags": [
+          "PRO Terms"
+        ],
+        "operationId": "getPROTerms",
+        "summary": "Search PRO terms.",
+        "description": "Gets a list of PRO terms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. A PRO term with the specified ID was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pros/{proIds}": {
+      "get": {
+        "tags": [
+          "PRO Terms"
+        ],
+        "operationId": "getPROTermByIDs",
+        "summary": "Return PRO terms by IDs.",
+        "description": "Gets PRO terms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idsParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a PRO term.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PROTerm"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PROTerm"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. A PRO term with the specified ID was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/modification": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getModifiedForms",
+        "summary": "Returns a list of modified protein forms.",
+        "description": "Gets a list of modified protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No modified protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/modification/phosphorylated": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getPhosphorylatedForms",
+        "summary": "Returns a list of phosphorylated protein forms.",
+        "description": "Gets a list of phosphorylated protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No phosphorylated protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/modification/methylated": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getMethylatedForms",
+        "summary": "Returns a list of methylated protein forms.",
+        "description": "Gets a list of methylated protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No methylated protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/modification/acetylated": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getAcetylatedForms",
+        "summary": "Returns a list of acetylated protein forms.",
+        "description": "Gets a list of acetylated protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No acetylated protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/modification/ubiquitinated": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getUbiquitinatedForms",
+        "summary": "Returns a list of ubiquitinated protein forms.",
+        "description": "Gets a list of ubiquitinated protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No ubiquitinated protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/modification/glycosylated": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getGlycosylatedForms",
+        "summary": "Returns a list of glycosylated protein forms.",
+        "description": "Gets a list of glycosylated protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No glycosylated protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/orthoisoform": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getOrthoIsoForms",
+        "summary": "Returns a list of ortho-isoform protein forms.",
+        "description": "Gets a list of ortho-isoform protien forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No ortho-isoform protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/orthomodform": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getOrthoModForms",
+        "summary": "Returns a list of ortho-modform protein forms.",
+        "description": "Gets a list of ortho-modform protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No ortho-modform protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/sequence": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getSequenceLevelProteoforms",
+        "summary": "Returns a list of sequence level protein forms.",
+        "description": "Gets a list of sequence level protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No sequence protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proforms/organism-sequence": {
+      "get": {
+        "tags": [
+          "Proteoform Terms"
+        ],
+        "operationId": "getOrganismSequenceLevelProteoforms",
+        "summary": "Returns a list of organism-sequence level protein forms.",
+        "description": "Gets a list of organism-sequence level protein forms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No organism-sequence protein form was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proevos/family": {
+      "get": {
+        "tags": [
+          "Protein Evolutionary Terms"
+        ],
+        "operationId": "getFamilyLevelEvolutionaryTerms",
+        "summary": "Returns a list of family level protein terms.",
+        "description": "Gets a list of family level protein terms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No family protein term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proevos/gene": {
+      "get": {
+        "tags": [
+          "Protein Evolutionary Terms"
+        ],
+        "operationId": "getGeneLevelEvolutionaryTerms",
+        "summary": "Returns a list of gene level protein terms.",
+        "description": "Gets a list of gene level protein terms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No gene level protein term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/proevos/organism-gene": {
+      "get": {
+        "tags": [
+          "Protein Evolutionary Terms"
+        ],
+        "operationId": "getOrganismGeneLevelEvolutionaryTerms",
+        "summary": "Returns a list of organism-gene level protein terms.",
+        "description": "Gets a list of organism-gene level protein terms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No organism-gene level protein term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/procomps/organism-specific": {
+      "get": {
+        "tags": [
+          "Protein Complex Terms"
+        ],
+        "operationId": "getSpeciesSpecificComplexTerms",
+        "summary": "Returns a list of organism specific protein complex terms.",
+        "description": "Gets a list of organism specific protein complex terms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No organism specific protein complex term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/procomps/": {
+      "get": {
+        "tags": [
+          "Protein Complex Terms"
+        ],
+        "operationId": "getSpeciesNonSpecificComplexTerms",
+        "summary": "Returns a list of organism non-specific protein complex terms.",
+        "description": "Gets a list of organism non-specific protein complex terms and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No organism non-specific protein complex term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/EcoCyc_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithEcoCyCId",
+        "summary": "Returns a list of PRO terms with EcoCyC ID as cross-reference.",
+        "description": "Gets a list of PRO terms with EcoCyC ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "in": "query",
+            "name": "showEcoCycID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with EcoCyC ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/HGNC_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithHGNCId",
+        "summary": "Returns a list of PRO terms with HGNC ID as cross-reference.",
+        "description": "Gets a list of PRO terms with HGNC ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showHGNCID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with HGNC ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/MGI_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithMGIId",
+        "summary": "Returns a list of PRO terms with MGI ID as cross-reference.",
+        "description": "Gets a list of PRO terms with MGI ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showMGIID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with MGI ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/Ontology_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithOntologyId",
+        "summary": "Returns a list of PRO terms with Ontology ID as cross-reference.",
+        "description": "Gets a list of PRO terms with Ontology ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showAnnotation",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with Ontology ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/PANTHER_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithPANTHERId",
+        "summary": "Returns a list of PRO terms with PANTHER ID as cross-reference.",
+        "description": "Gets a list of PRO terms with PANTHER ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showPANTHERID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with PANTHER ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/PIRSF_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithPIRSFId",
+        "summary": "Returns a list of PRO terms with PIRSF ID as cross-reference.",
+        "description": "Gets a list of PRO terms with PIRSF ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showPIRSFID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with PIRSF ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/PMID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithPMID",
+        "summary": "Returns a list of PRO terms with PMID as cross-reference.",
+        "description": "Gets a list of PRO terms with PMID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showPMID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. A list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with PMID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/Reactome_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithReactomeID",
+        "summary": "Returns a list of PRO terms with Reactome ID as cross-reference.",
+        "description": "Gets a list of PRO terms with Reactome ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showReactomeID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with Reactome ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/NCBITaxon_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithNCBITaxonID",
+        "summary": "Returns a list of PRO terms with NCBI Taxon ID as cross-reference.",
+        "description": "Gets a list of PRO terms with NCBI Taxon ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showAnnotation",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with NCBI Taxon ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dbxrefs/UniProtKB_ID": {
+      "get": {
+        "tags": [
+          "Database Cross-references"
+        ],
+        "operationId": "getPROTermsWithUniProtKBID",
+        "summary": "Returns a list of PRO terms with UniProtKB ID as cross-reference.",
+        "description": "Gets a list of PRO terms with UniProtKB ID as cross-reference and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/searchFieldParam"
+          },
+          {
+            "$ref": "#/components/parameters/searchParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "in": "query",
+            "name": "showUniProtKBID",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns a list of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term with UniProtKB ID cross-reference was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paf/{proIds}": {
+      "get": {
+        "tags": [
+          "PRO Annotation File"
+        ],
+        "operationId": "getPROAnnotationsByPROIDs",
+        "summary": "Returns annotations for the given PRO ID(s).",
+        "description": "Gets annotations for the given PRO ID(s).",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idsParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns annotations for the given PRO ID(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Annotation"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Annotation"
+                  }
+                }
+              },
+              "text/tab-separated-values": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Annotation"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No annotation was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/obo/{proIds}": {
+      "get": {
+        "tags": [
+          "OBO File"
+        ],
+        "operationId": "getOBOByPROIDs",
+        "summary": "Returns PRO term in OBO format for the given PRO ID(s).",
+        "description": "Gets PRO term in OBO format for the given PRO ID(s).",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idsParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns PRO term in OBO format for the given PRO ID",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. None of the specified PRO IDs is valid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No PRO term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dag/parent/{proIds}": {
+      "get": {
+        "tags": [
+          "DAG"
+        ],
+        "operationId": "getParentByProIDs",
+        "summary": "Returns direct parent PRO terms by the given PRO ID(s).",
+        "description": "Gets direct parent PRO terms by the given PRO ID(s) and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idsParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns direct parent PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No direct parent PRO term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dag/ancestor/{proIds}": {
+      "get": {
+        "tags": [
+          "DAG"
+        ],
+        "operationId": "getAncestorByProIDs",
+        "summary": "Returns direct and indirect parent PRO terms by the given PRO ID(s).",
+        "description": "Gets direct and indirect parent PRO terms by the given PRO ID(s) and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idsParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns direct and indirect parent PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No direct and indirect parent PRO term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dag/children/{proIds}": {
+      "get": {
+        "tags": [
+          "DAG"
+        ],
+        "operationId": "getChildrenByProIDs",
+        "summary": "Returns direct children PRO terms by the given PRO ID(s).",
+        "description": "Gets direct children PRO terms by the given PRO ID(s) and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idsParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns direct children PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No direct children PRO term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dag/descendant/{proIds}": {
+      "get": {
+        "tags": [
+          "DAG"
+        ],
+        "operationId": "getDescendantByProIDs",
+        "summary": "Returns direct and indirect children PRO terms by the given PRO ID(s).",
+        "description": "Gets direct and indirect children PRO terms by the given PRO ID(s) and associated information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idsParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showParentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showChildParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/offsetParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns direct and indirect children PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PROTerm"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No direct children PRO term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dag/hierarchy/{proId}": {
+      "get": {
+        "tags": [
+          "DAG"
+        ],
+        "operationId": "getHierarchyByProID",
+        "summary": "Returns hierarchy of PRO terms by the given PRO ID.",
+        "description": "Gets hierarchy of PRO terms by the given PRO ID.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPRONameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPROTermDefinitionParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCategoryParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnnotationParam"
+          },
+          {
+            "$ref": "#/components/parameters/showAnyRelationshipParam"
+          },
+          {
+            "$ref": "#/components/parameters/showCommentParam"
+          },
+          {
+            "$ref": "#/components/parameters/showEcocycIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showGeneNameParam"
+          },
+          {
+            "$ref": "#/components/parameters/showHGNCIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showMGIIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoIsoformParam"
+          },
+          {
+            "$ref": "#/components/parameters/showOrthoModifiedFormParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPANTHERIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPIRSFIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showPMIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showReactomeIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showSynonymParam"
+          },
+          {
+            "$ref": "#/components/parameters/showTaxonIDParam"
+          },
+          {
+            "$ref": "#/components/parameters/showUniProtKBIDParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status=OK. Returns hierarchy of PRO terms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChildParentPair"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChildParentPair"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "status=Bad Reqeust. The specified PRO ID is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "status=Not Found. No direct children PRO term was found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "status=Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "idsParam": {
+        "in": "path",
+        "name": "proIds",
+        "description": "PRO ID(s). Space separated values accepted up to 100.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "PR:Q9R244 PR:Q9R244-1 PR:000025934"
+      },
+      "idParam": {
+        "in": "path",
+        "name": "proId",
+        "description": "Space separated PRO ID(s).",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "PR:000025934"
+      },
+      "offsetParam": {
+        "in": "query",
+        "name": "Offset",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "description": "The number of items to skip before starting to collect the result set."
+      },
+      "limitParam": {
+        "in": "query",
+        "name": "Limit",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 50
+        },
+        "description": "The numbers of items to return."
+      },
+      "showAnnotationParam": {
+        "in": "query",
+        "name": "showAnnotation",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showAnyRelationshipParam": {
+        "in": "query",
+        "name": "showAnyRelationship",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showCategoryParam": {
+        "in": "query",
+        "name": "showCategory",
+        "schema": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "showChildParam": {
+        "in": "query",
+        "name": "showChild",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showCommentParam": {
+        "in": "query",
+        "name": "showComment",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showEcocycIDParam": {
+        "in": "query",
+        "name": "showEcoCycID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showGeneNameParam": {
+        "in": "query",
+        "name": "showGeneName",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showHGNCIDParam": {
+        "in": "query",
+        "name": "showHGNCID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showMGIIDParam": {
+        "in": "query",
+        "name": "showMGIID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showOrthoIsoformParam": {
+        "in": "query",
+        "name": "showOrthoIsoform",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showOrthoModifiedFormParam": {
+        "in": "query",
+        "name": "showOrthoModifiedForm",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showPANTHERIDParam": {
+        "in": "query",
+        "name": "showPANTHERID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showPIRSFIDParam": {
+        "in": "query",
+        "name": "showPIRSFID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showPMIDParam": {
+        "in": "query",
+        "name": "showPMID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showPRONameParam": {
+        "in": "query",
+        "name": "showPROName",
+        "schema": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "showPROTermDefinitionParam": {
+        "in": "query",
+        "name": "showPROTermDefinition",
+        "schema": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "showParentParam": {
+        "in": "query",
+        "name": "showParent",
+        "schema": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "showReactomeIDParam": {
+        "in": "query",
+        "name": "showReactomeID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showSynonymParam": {
+        "in": "query",
+        "name": "showSynonym",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showUniProtKBIDParam": {
+        "in": "query",
+        "name": "showUniProtKBID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "showTaxonIDParam": {
+        "in": "query",
+        "name": "showTaxonID",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "searchFieldParam": {
+        "in": "query",
+        "name": "searchField",
+        "description": "Search field that needs to be considered for filter",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Any_field",
+            "Any_relationship",
+            "Category",
+            "Child",
+            "Comment",
+            "EcoCyc_ID",
+            "Gene_Name",
+            "HGNC_ID",
+            "PRO_ID",
+            "Interaction_with",
+            "MGI_ID",
+            "Modifier",
+            "Ontology_ID",
+            "Ontology_term",
+            "Ortho-isoform",
+            "Ortho-modform",
+            "Panther_ID",
+            "Parent",
+            "PIRSF_ID",
+            "PMID",
+            "PRO_term_definition",
+            "PRO_name",
+            "PRO_name_synonyms",
+            "Reactiome_ID",
+            "Relation",
+            "Taxon_ID",
+            "UniProtKB_ID"
+          ],
+        }
+      },
+      "searchParam": {
+        "in": "query",
+        "name": "searchValue",
+        "description": "any string or \"null\" or \"not null\" or a list of space separated ids",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "PROTerm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The PRO ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "The PRO name."
+          },
+          "termDef": {
+            "type": "string",
+            "description": "The PRO term definition."
+          },
+          "category": {
+            "type": "string",
+            "description": "The PRO term category."
+          },
+          "annotation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Annotation"
+            }
+          },
+          "anyRelationship": {
+            "type": "string"
+          },
+          "child": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ecoCycID": {
+            "type": "string"
+          },
+          "geneName": {
+            "type": "string"
+          },
+          "hgncID": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mgiID": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "orthoIsoform": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "orthoModifiedForm": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pantherID": {
+            "type": "string"
+          },
+          "paraent": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pirsfID": {
+            "type": "string"
+          },
+          "pmID": {
+            "type": "string"
+          },
+          "synonym": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reactomeID": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uniprotKBID": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ChildParentPair": {
+        "type": "object",
+        "properties": {
+          "pro": {
+            "$ref": "#/components/schemas/PROTerm"
+          },
+          "pro_parent": {
+            "$ref": "#/components/schemas/PROTerm"
+          }
+        }
+      },
+      "Annotation": {
+        "type": "object",
+        "properties": {
+          "modifier": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "ontologyID": {
+            "type": "string"
+          },
+          "ontologyTerm": {
+            "type": "string"
+          },
+          "relativeTo": {
+            "type": "string"
+          },
+          "interactionWith": {
+            "type": "string"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/Evidence"
+          },
+          "ncbiTaxonId": {
+            "type": "integer"
+          },
+          "inferredFrom": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Evidence": {
+        "type": "object",
+        "properties": {
+          "evidenceSource": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidenceCode": {
+            "type": "string"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    }
+  }
+}

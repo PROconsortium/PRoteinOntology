@@ -1,0 +1,1623 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Protein Ontology Linked Open Data - RDF Model</title>
+	<link href="https://proconsortium.org/styles.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="js/pro_lod.js"></script>
+</head>
+
+<body>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%"">
+		<tr>
+			<td width=" 100%">
+		<table cellSpacing="0" cellPadding="0" width="100%" background="images/bannerBg.png" border="0">
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap><img src="images/empty_line.GIF" width="1"
+						height="3"></td>
+			</tr>
+			<tr>
+				<td><img src="images/empty_line.GIF" width="8" height="76"></td>
+				<td align=center>
+					<img src="images/empty_line.GIF" width="1" height="3"><br />
+					<img src="images/empty_line.GIF" width="3" height="1">
+					<a href="https://proconsortium.org/pro.shtml">
+						<img alt="back to PRO homepage" src="images/PROlogofinalEDGclear.png" width="140" heightxx="42"
+							border="0">
+					</a>
+					<img src="images/empty_line.GIF" width="3" height="1"><br />
+					<img src="images/empty_line.GIF" width="1" height="2">
+				</td>
+				<td width="80%">
+					<table border="0" cellPadding="0" cellSpacing="0" class="PRO_banner1">
+						<tr>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+							<td><img src="images/hm.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro.shtml"
+									class="ProMenu">Home</a></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/browse.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_browse.shtml"
+									class="ProMenu">Browse</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/search.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_search.shtml"
+									class="ProMenu">Search</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sparql.png" width="18">&nbsp;</td>
+							<!-- <td align="center" nowrap><a href="https://proconsortium.org/pro_sparql.shtml"
+									class="ProMenu" style="color:#FF9933;">SPARQL</a> </td>
+							<td></td> -->
+							<td align="center" nowrap><a href="index.html" class="ProMenu"
+									style="color:#FF9933;">LOD</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sta.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/cgi-bin/sta_pro"
+									class="ProMenu">Statistics</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/download.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_download.shtml"
+									class="ProMenu">Download</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+
+				<td align="center">
+					<table border="0" cellPadding="3" cellSpacing="3" class="nrm02">
+						<tr>
+							<form name="prosearch" method="get"
+								action="https://proconsortium.org/cgi-bin/textsearch_pro">
+								<td nowrap>
+									<input type="text" name="query0" size="30" class="nrm11"
+										placeholder="PR:000025934, smad">
+								</td>
+								<td><input type="image" name="search" src="images/searchWhite.png">
+									<input type="hidden" name="field0" value="ALLFLDS">
+								</td>
+								<td><img src="images/empty_line.GIF" width="4">
+								</td>
+							</form>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor="#EEEEEE"><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td>
+					<table border="0" cellPadding="3" cellSpacing=3 class=PRO_banner2>
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/cgi-bin/race_pro">RACE-PRO</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="http://purl.obolibrary.org/obo/pr/tracker"
+									target=_b>PRO tracker</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://pir17.georgetown.edu/confluence/display/PROWIKI/Home"
+									target=_b>Wiki</a></TD>
+							<td><img src="images/empty_line.GIF" width="5"></td>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor=#EEEEEE><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td align=right>
+					<table border="0" cellPadding="3" cellSpacing="3" class="PRO_banner2">
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/pro_cst.shtml">PRO Consortium</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/pro_pub.shtml">Publications</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/pro_dcmtt.shtml">Documentation</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap>
+					<img src="images/empty_line.GIF" width="1" height="3"></td>
+			</tr>
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+		</table>
+
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%" class="nrm04">
+						<tbody>
+							<tr>
+								<td align="center" class="text-primary">
+									<h3><b>Protein Ontology Linked Open Data</b></h3>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="padding: 1em 2em 0em 2em ; margin: 5em 5em 0em 5em auto;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" class="nrm04">
+							<tbody>
+								<tr>
+									<td>
+										<nav class="navbar navbar-expand-sm navbar-dark">
+											<!-- Links -->
+											<ul class="navbar-nav">
+												<li class="nav-item">
+													<a class="nav-link" href="index.html">Introduction</a>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link active dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">RDF Model
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="rdf.html#uri">PRO Uniform
+															Resource Identifiers (URIs)</a>
+														<a class="dropdown-item" href="rdf.html#pro_cat">Types of PRO Terms</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Dataset Description
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="dataset.html#void">VoID</a>
+														<a class="dropdown-item" href="dataset.html#linkset">Linked
+															Dataset</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Data Access
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="release.html">Data
+															Dumps</a>
+														<a class="dropdown-item"
+															href="https://sparql.proconsortium.org/virtuoso/fct/">Faceted
+															Browser</a>
+
+														<a class="dropdown-item" href="api.html">RESTful
+															APIs</a>
+														<a class="dropdown-item" href="yasgui.html">SPARQL
+															GUI</a>
+													</div>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="fair.html">FAIRness</a>
+												</li>
+											</ul>
+										</nav>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<article id="pro_lod">
+							<div style="margin: 2em 2em 2em 2em;">
+								<div class="article_title">PRO RDF Model<br></div>
+								<br>
+								<div id="toTop" style="display: block;">Back to Top</div>
+								<div class="all-sections">
+
+									<br>
+									<p>PRO provides an ontological representation of protein-related entities and their
+										relationships. Each PRO term represents
+										a distinct class of organism-neutral or organism-specific entities (e. g.
+										modified forms, orthologous isoforms,
+										and protein complexes).
+									</p>
+									<a name="uri"></a>
+									<h4 id="uri">PRO Uniform Resource Identifiers (URIs)</h4>
+
+									<p>PRO follows the rule of reusing existing identifiers whenever feasible. e.g.,
+										<a
+											href="http://purl.obolibrary.org/obo/GO_0032991">&lt;http://purl.obolibrary.org/obo/GO_0032991&gt;</a>
+										(Gene ontology),
+										<a
+											href="http://purl.obolibrary.org/obo/RO_0002160">&lt;http://purl.obolibrary.org/obo/RO_0002160"&gt;</a>
+										(Relations Ontology) etc. The format of PRO identifier
+										is "PR_xxxxxxxxxx", e.g.,
+										<a
+											href="http://purl.obolibrary.org/obo/PR_000000001">&lt;http://purl.obolibrary.org/obo/PR_00000000001&gt;</a>.
+										However, for UniProtKB entires incorporated into
+										PRO 'organism-gene' category, we use the UniProt accession number and prefixed
+										it
+										with "PR_" as its corresponding
+										PRO identifier. e.g.,
+										<a
+											href="http://purl.obolibrary.org/obo/PR_P00015">&lt;http://purl.obolibrary.org/obo/PR_P00015&gt;</a>.
+									</p>
+									<a name="pro_cat"></a>
+									<h4>Types of PRO Terms</h4>
+
+									<h5 id="category_family">Category=family</h5>
+									<div style="padding-left: 30px; padding-right:30px;">
+										<p>Each PRO term at family level refers to protein products of a distinct gene
+											family arising from a common ancestor. The leaf-most nodes at this level are
+											usually families comprising paralogous sets of gene products (of a single or
+											multiple organisms). For example, smad2 and smad3 both encode proteins that
+											are TGF receptor-regulated while smad1, smad5, and smad9 are all BMP
+											receptor-regulated. Thus, "TGF-beta receptor-regulated smad protein" and
+											"BMP receptor-regulated smad protein" are terms denoting distinct families.
+											Note that this level collectively refers to any such grouping at any level
+											of similarity. For example, the two families indicated above can merge into
+											a "receptor-regulated smad protein" class and further merge (with the
+											protein products of smad4, smad6, and smad7) into the "smad protein" class.
+											An example of organism non-specific PRO family term
+											<a href="http://purl.obolibrary.org/obo/PR_000000027">PR:000000027</a> is
+											shown below in RDF Graph, RDF/XML and Turtle formats.</p>
+										<div>
+											<!-- Nav tabs -->
+											<ul class="nav nav-pills" role="tablist">
+												<li class="nav-item">
+													<a class="nav-link active" data-toggle="pill"
+														href="#PR_000000027_graph">RDF Graph</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_000000027_xml">RDF/XML</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_000000027_ttl">Turtle</a>
+												</li>
+											</ul>
+
+											<!-- Tab panes -->
+											<div class="tab-content">
+												<div id="PR_000000027_graph" class="tab-pane active">
+													<p><img src="images/rdf/PR_000000027_rdf_graph.png"
+															style="width:100%;"></img></p>
+												</div>
+												<div id="PR_000000027_xml" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+	xmlns:obo="http://purl.obolibrary.org/obo/"
+	xmlns:paf="http://pir.georgetown.edu/pro/paf#" >
+	<rdf:Description rdf:about="http://purl.obolibrary.org/obo/PR_000000027">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+	<rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#resource" />
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">smad protein</rdfs:label>
+	<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category=family.</rdfs:comment>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000000001" />
+	<oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PIRSF:PIRSF037286</oboInOwl:hasDbXref>
+	<oboInOwl:hasOBONamespace rdf:datatype="http://www.w3.org/2001/XMLSchema#string">protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PR:000000027</oboInOwl:id>
+	<obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A protein with core domain composition consisting of one MH1 domain (Pfam:PF03165) at the N terminus and one MH2 domain (Pfam:PF03166) at the C-terminus, separated by a non-conserved linker region. Smad proteins are mediators of signal transduction in transforming growth factor beta (TGF-beta) superfamily pathways.</obo:IAO_0000115>
+	<paf:objectTerm>smad protein</paf:objectTerm>
+	</rdf:Description>
+</rdf:RDF>
+														</textarea></p>
+												</div>
+												<div id="PR_000000027_ttl" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix obo:	<http://purl.obolibrary.org/obo/> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oboInOwl:	<http://www.geneontology.org/formats/oboInOwl#> .
+@prefix paf:	<http://pir.georgetown.edu/pro/paf#> .
+
+obo:PR_000000027	rdf:type	owl:Class ,
+		rdf:resource .
+obo:PR_000000027	rdfs:label	"smad protein" ;
+	rdfs:comment	"Category=family." ;
+	rdfs:subClassOf	obo:PR_000000001 .
+obo:PR_000000027	oboInOwl:hasDbXref	"PIRSF:PIRSF037286" ;
+	oboInOwl:hasOBONamespace	"protein" ;
+	oboInOwl:id	"PR:000000027" ;
+	obo:IAO_0000115	"A protein with core domain composition consisting of one MH1 domain (Pfam:PF03165) at the N terminus and one MH2 domain (Pfam:PF03166) at the C-terminus, separated by a non-conserved linker region. Smad proteins are mediators of signal transduction in transforming growth factor beta (TGF-beta) superfamily pathways." .
+obo:PR_000000027	paf:objectTerm	"smad protein" .	
+																	</textarea></p>
+												</div>
+											</div>
+										</div>
+
+										<br>
+										<a id="category_org_family"></a>
+										<p>An example of organism-specific PRO family term
+											<a href="http://purl.obolibrary.org/obo/PR_000044507">PR:000044507</a> is
+											shown below in RDF Graph, RDF/XML and Turtle formats.</p>
+										<div>
+											<!-- Nav tabs -->
+											<ul class="nav nav-pills" role="tablist">
+												<li class="nav-item">
+													<a class="nav-link active" data-toggle="pill"
+														href="#PR_000044507_graph">RDF Graph</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_000044507_xml">RDF/XML</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_000044507_ttl">Turtle</a>
+												</li>
+											</ul>
+
+											<!-- Tab panes -->
+											<div class="tab-content">
+												<div id="PR_000044507_graph" class="tab-pane active">
+													<p><img src="images/rdf/PR_000044507_rdf_graph.png"
+															style="width:100%;"></img></p>
+												</div>
+												<div id="PR_000044507_xml" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:owl="http://www.w3.org/2002/07/owl#"
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+			xmlns:obo="http://purl.obolibrary.org/obo/"
+			xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+	<owl:Class rdf:about="http://purl.obolibrary.org/obo/PR_000044507">
+	<rdfs:comment>Category=organism-family.</rdfs:comment>
+	<rdfs:label>14-3-3 protein (human)</rdfs:label>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000029067"/>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000003237"/>
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002160"/>
+		<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<obo:IAO_0000115>A 14-3-3 protein that is encoded in the genome of human.</obo:IAO_0000115>
+	<oboInOwl:hasOBONamespace>protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id>PR:000044507</oboInOwl:id>
+	</owl:Class>
+
+</rdf:RDF>
+														</textarea></p>
+												</div>
+												<div id="PR_000044507_ttl" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix obo:	<http://purl.obolibrary.org/obo/> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oboInOwl:	<http://www.geneontology.org/formats/oboInOwl#> .
+
+obo:PR_000044507  a               owl:Class ;
+rdfs:comment              "Category=organism-family." ;
+rdfs:label                "14-3-3 protein (human)" ;
+rdfs:subClassOf           obo:PR_000029067 , obo:PR_000003237 ;
+rdfs:subClassOf           [ a                   owl:Restriction ;
+							owl:onProperty      obo:RO_0002160 ;
+							owl:someValuesFrom  obo:NCBITaxon_9606
+							] ;
+obo:IAO_0000115           "A 14-3-3 protein that is encoded in the genome of human." ;
+oboInOwl:hasOBONamespace  "protein" ;
+oboInOwl:id               "PR:000044507" .
+				</textarea></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<br>
+									<h5 id="category_gene">Category=gene</h5>
+									<div style="padding-left: 30px; padding-right:30px;">
+										<p>Each PRO term at gene level refers to the protein products of a distinct gene
+											in a reference organism and the orthologs thereof. For example, "smad2" and
+											"smad3" are two different genes, and therefore have two different PRO
+											entries at the gene level of distinction. The protein products of what is
+											recognized as smad2 in humans and what is recognized as smad2 in mouse fall
+											under the single gene-level term “smad2”. Thus, a single term at the
+											gene-level distinction collects the protein products of (usually 1-to-1)
+											orthologs for that gene. Organism-specific versions are (typically) defined
+											logically as the intersection of the parent (gene-level) and the organism
+											(taxonomic) terms. If a resource provides gene information, PRO will
+											indicate this using the has_gene_template relation. An example of organism
+											non-specific PRO
+											gene
+											term
+											<a href="http://purl.obolibrary.org/obo/PR_000000364">PR:000000364</a> is
+											shown below in RDF Graph, RDF/XML and Turtle formats.</p>
+										<div>
+											<!-- Nav tabs -->
+											<ul class="nav nav-pills" role="tablist">
+												<li class="nav-item">
+													<a class="nav-link active" data-toggle="pill"
+														href="#PR_000000364_graph">RDF Graph</a>
+												</li>
+
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_000000364_xml">RDF/XML</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_000000364_ttl">Turtle</a>
+												</li>
+											</ul>
+											<!-- Tab panes -->
+											<div class="tab-content">
+												<div id="PR_000000364_graph" class="tab-pane active">
+													<p><img src="images/rdf/PR_000000364_rdf_graph.png"
+															style="width:100%;"></img></p>
+												</div>
+												<div id="PR_000000364_xml" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+	xmlns:obo="http://purl.obolibrary.org/obo/" >
+	<rdf:Description rdf:about="http://purl.obolibrary.org/obo/PR_000000364">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">smad2</rdfs:label>
+	<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category=gene.</rdfs:comment>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000000066" />
+	<oboInOwl:hasRelatedSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MADR2</oboInOwl:hasRelatedSynonym>
+	<oboInOwl:hasRelatedSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MADH2</oboInOwl:hasRelatedSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAD homolog 2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SMAD 2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mad-related protein 2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JV18-1</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mMad2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SMAD2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hMAD-2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SMAD family member 2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mothers against DPP homolog 2</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace rdf:datatype="http://www.w3.org/2001/XMLSchema#string">protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PR:000000364</oboInOwl:id>
+	<obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A TGF-beta receptor-regulated smad protein that is a translation product of the human SMAD2 gene or a 1:1 ortholog thereof.</obo:IAO_0000115>
+	</rdf:Description>
+</rdf:RDF>															
+</textarea></p>
+												</div>
+												<div id="PR_000000364_ttl" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix obo:	<http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl:	<http://www.geneontology.org/formats/oboInOwl#> .
+
+obo:PR_000000364	rdf:type	owl:Class .
+obo:PR_000000364	rdfs:label	"smad2" ;
+	rdfs:comment	"Category=gene." ;
+	rdfs:subClassOf	obo:PR_000000066 .
+obo:PR_000000364	oboInOwl:hasRelatedSynonym	"MADR2" ,
+		"MADH2" ;
+	oboInOwl:hasExactSynonym	"MAD homolog 2" ,
+		"SMAD 2" ,
+		"Mad-related protein 2" ,
+		"JV18-1" ,
+		"mMad2" ,
+		"SMAD2" ,
+		"hMAD-2" ,
+		"SMAD family member 2" ,
+		"mothers against DPP homolog 2" ;
+	oboInOwl:hasOBONamespace	"protein" ;
+	oboInOwl:id	"PR:000000364" ;
+	obo:IAO_0000115	"A TGF-beta receptor-regulated smad protein that is a translation product of the human SMAD2 gene or a 1:1 ortholog thereof." .													  
+															</textarea>
+													</p>
+												</div>
+											</div>
+										</div>
+
+										<br />
+										<a id="category_org_gene"></a>
+										<p>An
+											example of organism specific PRO gene term <a
+												href="http://purl.obolibrary.org/obo/PR_P05042">PR:P05042</a> is
+											shown below in RDF Graph, RDF/XML and Turtle formats.</p>
+
+										<div>
+											<!-- Nav tabs -->
+											<ul class="nav nav-pills" role="tablist">
+												<li class="nav-item active">
+													<a class="nav-link active" data-toggle="pill"
+														href="#PR_P05042_graph">RDF Graph</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_P05042_xml">RDF/XML</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" data-toggle="pill"
+														href="#PR_P05042_ttl">Turtle</a>
+												</li>
+											</ul>
+											<!-- Tab panes -->
+											<div class="tab-content">
+												<div id="PR_P05042_graph" class="tab-pane active">
+													<p><img src="images/rdf/PR_P05042_rdf_graph.png"
+															style="width:100%;"></img></p>
+												</div>
+												<div id="PR_P05042_xml" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:owl="http://www.w3.org/2002/07/owl#"
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+			xmlns:obo="http://purl.obolibrary.org/obo/"
+			xmlns:pr="http://purl.obolibrary.org/obo/pr#"
+			xmlns:ecogene="http://www.ecogene.org/gene/"
+			xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+	<owl:Class rdf:about="obo:PR_P05042">
+	<rdfs:comment>Category=organism-gene.</rdfs:comment>
+	<rdfs:label>fumarate hydratase class II (Escherichia coli K-12)</rdfs:label>
+	<rdfs:subClassOf rdf:resource="obo:PR_000022736"/>
+	<rdfs:subClassOf rdf:resource="obo:PR_000029062"/>
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="pr:has_gene_template"/>
+		<owl:someValuesFrom rdf:resource="ecogene:EG10358"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="obo:RO_0002160"/>
+		<owl:someValuesFrom rdf:resource="obo:NCBITaxon_83333"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<obo:IAO_0000115>A fumarate hydratase class II that is encoded in the genome of Escherichia coli K-12.</obo:IAO_0000115>
+	<oboInOwl:hasDbXref>UniProtKB:P05042</oboInOwl:hasDbXref>
+	<oboInOwl:hasDbXref>EcoCyc:FUMC-MONOMER</oboInOwl:hasDbXref>
+	<oboInOwl:hasExactSynonym>aerobic fumarase (Escherichia coli K-12)</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym>Ec-fumC</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym>iron-independent fumarase (Escherichia coli K-12)</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym>fumarase C (Escherichia coli K-12)</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace>protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:hasRelatedSynonym>fumC</oboInOwl:hasRelatedSynonym>
+	<oboInOwl:hasRelatedSynonym>b1611</oboInOwl:hasRelatedSynonym>
+	<oboInOwl:hasRelatedSynonym>JW1603</oboInOwl:hasRelatedSynonym>
+	<oboInOwl:id>PR:P05042</oboInOwl:id>
+	<owl:equivalentClass>
+		<owl:Class>
+		<owl:intersectionOf>
+			<rdf:Description>
+			<rdf:first rdf:resource="obo:PR_000022736"/>
+			<rdf:rest>
+				<rdf:Description>
+				<rdf:first>
+					<owl:Restriction>
+					<owl:onProperty rdf:resource="obo:RO_0002160"/>
+					<owl:someValuesFrom rdf:resource="obo:NCBITaxon_83333"/>
+					</owl:Restriction>
+				</rdf:first>
+
+				<rdf:rest rdf:resource="rdf:nil"/>
+				</rdf:Description>
+			</rdf:rest>
+
+			</rdf:Description>
+		</owl:intersectionOf>
+
+		</owl:Class>
+	</owl:equivalentClass>
+
+	</owl:Class>
+
+</rdf:RDF>														
+</textarea></p>
+												</div>
+												<div id="PR_P05042_ttl" class="tab-pane fade">
+													<p><textarea
+															style="border: none; width:100%; height:350px; font-size: 13px;">
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix obo:	<http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl:	<http://www.geneontology.org/formats/oboInOwl#> .
+@prefix pr:    <http://purl.obolibrary.org/obo/pr#> .
+
+obo:PR_P05042  a                    owl:Class ;
+        rdfs:comment                "Category=organism-gene." ;
+        rdfs:label                  "fumarate hydratase class II (Escherichia coli K-12)" ;
+        rdfs:subClassOf             obo:PR_000022736 , obo:PR_000029062 ;
+        rdfs:subClassOf             [ a                   owl:Restriction ;
+                                      owl:onProperty      pr:has_gene_template ;
+                                      owl:someValuesFrom  <http://www.ecogene.org/gene/EG10358>
+                                    ] ;
+        rdfs:subClassOf             [ a                   owl:Restriction ;
+                                      owl:onProperty      obo:RO_0002160 ;
+                                      owl:someValuesFrom  obo:NCBITaxon_83333
+                                    ] ;
+        obo:IAO_0000115             "A fumarate hydratase class II that is encoded in the genome of Escherichia coli K-12." ;
+        oboInOwl:hasDbXref          "UniProtKB:P05042" , "EcoCyc:FUMC-MONOMER" ;
+        oboInOwl:hasExactSynonym    "aerobic fumarase (Escherichia coli K-12)" , "Ec-fumC" , "iron-independent fumarase (Escherichia coli K-12)" , "fumarase C (Escherichia coli K-12)" ;
+        oboInOwl:hasOBONamespace    "protein" ;
+        oboInOwl:hasRelatedSynonym  "fumC" , "b1611" , "JW1603" ;
+        oboInOwl:id                 "PR:P05042" ;
+        owl:equivalentClass         [ a                   owl:Class ;
+                                      owl:intersectionOf  ( obo:PR_000022736
+                                                            [ a                   owl:Restriction ;
+                                                              owl:onProperty      obo:RO_0002160 ;
+                                                              owl:someValuesFrom  obo:NCBITaxon_83333
+                                                            ]
+                                                          )
+                                    ] .
+														</textarea>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<br>
+								</div>
+								<br />
+								<h5 id="category_seqgroup">Category=seqgroup</h5>
+								<div style="padding-left: 30px; padding-right:30px;">
+									<p>Each PRO term at the seqgroup level refers to proteins encoded by the same gene
+										that are distinguished from siblings based on differences in shared portions of
+										encoding mRNAs. That is, all members of a given seqgroup are encoded by mRNAs
+										that have a common subset of sequence features, either as a common subset of
+										exons or as a common subset of sequence variations. Examples include proteins
+										encoded by the PTPRC (CD45) gene, where each member of the CD45R subtype
+										(CD45RA, CD45RAB, CD45RAC) minimally contains exon 4 (aka ‘A’) even while each
+										member of a given subtype has other exons that make them distinct, and
+										histocompatibility genes such as HLA-A, where each member of a given subtype
+										(HLA-A*24, HLA-A*68, etc) shares a common set of variations even while each
+										member of a given subtype has other variations that make them distinct.
+
+										An example of organism non-specific PRO sequence term <a
+											href="http://purl.obolibrary.org/obo/PR_000050216">PR:000050216</a> is shown
+										below in RDF Graph, RDF/XML and Turtle formats.</p>
+
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item active">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_000050216_graph">RDF
+													Graph</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000050216_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000050216_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_000050216_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_000050216_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_000050216_xml" class="tab-pane fade">
+												<p><textarea
+														style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:owl="http://www.w3.org/2002/07/owl#"
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+			xmlns:obo="http://purl.obolibrary.org/obo/"
+			xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+	<owl:Class rdf:about="http://purl.obolibrary.org/obo/PR_000050216">
+	<rdfs:comment>Category=seqgroup. Requested by=CL.</rdfs:comment>
+	<rdfs:label>receptor-type tyrosine-protein phosphatase C isoform CD45R</rdfs:label>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000001006"/>
+	<obo:IAO_0000115>A receptor-type tyrosine-protein phosphatase C that is a translation product of a mature transcript of the PTPRC gene, that minimally includes the region encoded by the variable exon 4(A).</obo:IAO_0000115>
+	<oboInOwl:hasExactSynonym>PTPRC/iso:CD45R</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym>CD45R</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace>protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id>PR:000050216</oboInOwl:id>
+	</owl:Class>
+
+</rdf:RDF>
+					</textarea></p>
+											</div>
+											<div id="PR_000050216_ttl" class="tab-pane fade">
+												<p><textarea
+														style="border: none; width:100%; height:350px; font-size: 13px;">
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix obo:	<http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl:	<http://www.geneontology.org/formats/oboInOwl#> .
+
+obo:PR_000050216  a               owl:Class ;
+		rdfs:comment              "Category=seqgroup. Requested by=CL." ;
+		rdfs:label                "receptor-type tyrosine-protein phosphatase C isoform CD45R" ;
+		rdfs:subClassOf           obo:PR_000001006 ;
+		obo:IAO_0000115           "A receptor-type tyrosine-protein phosphatase C that is a translation product of a mature transcript of the PTPRC gene, that minimally includes the region encoded by the variable exon 4(A)." ;
+		oboInOwl:hasExactSynonym  "PTPRC/iso:CD45R" , "CD45R" ;
+		oboInOwl:hasOBONamespace  "protein" ;
+		oboInOwl:id               "PR:000050216" .
+													</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+									<br />
+									<a id="category_org_seqgroup"></a>
+									<p> An example of organism specific PRO seqgroup term <a
+											href="http://purl.obolibrary.org/obo/PR_Q9ULB1">PR:Q9ULB1</a> is shown
+										below in RDF Graph, RDF/XML and Turtle formats.
+									</p>
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_Q9ULB1_graph">RDF
+													Graph</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_Q9ULB1_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_Q9ULB1_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_Q9ULB1_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_Q9ULB1_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_Q9ULB1_xml" class="tab-pane fade">
+												<p><textarea
+														style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:owl="http://www.w3.org/2002/07/owl#"
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+			xmlns:obo="http://purl.obolibrary.org/obo/"
+			xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+	<owl:Class rdf:about="http://purl.obolibrary.org/obo/PR_Q9ULB1">
+	<rdfs:comment>Category=organism-seqgroup.</rdfs:comment>
+	<rdfs:label>neurexin-1-alpha (human)</rdfs:label>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000029250"/>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000028818"/>
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002160"/>
+		<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<obo:IAO_0000115>A neurexin-1-alpha that is encoded in the genome of human.</obo:IAO_0000115>
+	<oboInOwl:hasDbXref>UniProtKB:Q9ULB1</oboInOwl:hasDbXref>
+	<oboInOwl:hasExactSynonym>hNRXN1-alpha</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym>neurexin I-alpha (human)</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace>protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id>PR:Q9ULB1</oboInOwl:id>
+	<owl:equivalentClass>
+		<owl:Class>
+		<owl:intersectionOf>
+			<rdf:Description>
+			<rdf:first rdf:resource="http://purl.obolibrary.org/obo/PR_000029250"/>
+			<rdf:rest>
+				<rdf:Description>
+				<rdf:first>
+					<owl:Restriction>
+					<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002160"/>
+					<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+					</owl:Restriction>
+				</rdf:first>
+
+				<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+				</rdf:Description>
+			</rdf:rest>
+
+			</rdf:Description>
+		</owl:intersectionOf>
+
+		</owl:Class>
+	</owl:equivalentClass>
+
+	</owl:Class>
+
+</rdf:RDF>
+													</textarea></p>
+											</div>
+											<div id="PR_Q9ULB1_ttl" class="tab-pane fade">
+												<p>
+													<textarea style="border: none; width:100%; height:350px; font-size:
+														13px;">
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix obo:	<http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl:	<http://www.geneontology.org/formats/oboInOwl#> .
+
+obo:PR_Q9ULB1  a                  owl:Class ;
+        rdfs:comment              "Category=organism-seqgroup." ;
+        rdfs:label                "neurexin-1-alpha (human)" ;
+        rdfs:subClassOf           obo:PR_000029250 , obo:PR_000028818 ;
+        rdfs:subClassOf           [ a                   owl:Restriction ;
+                                    owl:onProperty      obo:RO_0002160 ;
+                                    owl:someValuesFrom  obo:NCBITaxon_9606
+                                  ] ;
+        obo:IAO_0000115           "A neurexin-1-alpha that is encoded in the genome of human." ;
+        oboInOwl:hasDbXref        "UniProtKB:Q9ULB1" ;
+        oboInOwl:hasExactSynonym  "hNRXN1-alpha" , "neurexin I-alpha (human)" ;
+        oboInOwl:hasOBONamespace  "protein" ;
+        oboInOwl:id               "PR:Q9ULB1" ;
+        owl:equivalentClass       [ a                   owl:Class ;
+                                    owl:intersectionOf  ( obo:PR_000029250
+                                                          [ a                   owl:Restriction ;
+                                                            owl:onProperty      obo:RO_0002160 ;
+                                                            owl:someValuesFrom  obo:NCBITaxon_9606
+                                                          ]
+                                                        )
+                                  ] .
+</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
+
+								<h5 id="category_sequence">Category=sequence</h5>
+								<div style="padding-left: 30px; padding-right:30px;">
+									<p>Each PRO term at sequence level refers to the protein products of a gene with a
+										distinct sequence upon initial translation. The sequence differences can arise
+										from different alleles of a given gene (sequence variants), from splice variants
+										of a given RNA, or from alternative initiation and ribosomal frameshifting
+										during translation. One can think of this as a mature mRNA-level distinction.
+										For example, smad2 encodes both a long splice form and a short splice form. The
+										protein products of each isoform are separate PRO terms. If there is clear
+										knowledge on the equivalency of isoforms (that is, they are “ortho-isoforms”),
+										then the equivalent terms from different organisms are defined as children of
+										the sequence level terms. For example, ARF GTPase-activating protein GIT1
+										isoform 1 from mouse (PR:Q68FF6-1), ARF GTPase-activating protein GIT1 isoform 1
+										from rat (PR:Q9Z272-1), and ARF GTPase-activating protein GIT1 isoform 3 from
+										human (PR:Q9Y2X7-3) are ortho-isoforms that are children of the sequence level
+										term PR:000044155. If the equivalency of isoforms is not well-established, the
+										organism-sequence term is defined as a child of the organism-gene level term.
+
+										An example of organism non-specific PRO sequence term <a
+											href="http://purl.obolibrary.org/obo/PR_000000048">PR:000000048</a> is shown
+										below in RDF Graph, RDF/XML and Turtle formats.</p>
+
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item active">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_000000048_graph">RDF
+													Graph</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000000048_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000000048_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_000000048_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_000000048_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_000000048_xml" class="tab-pane fade">
+												<p><textarea
+														style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+	xmlns:obo="http://purl.obolibrary.org/obo/" >
+	<rdf:Description rdf:about="http://purl.obolibrary.org/obo/PR_000000048">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TGF-beta receptor type-2 isoform RII-1</rdfs:label>
+	<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category=sequence.</rdfs:comment>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000000005" />
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TGF-beta receptor isoform 1</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TGFBR2/iso:RII-1</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TGFBR2/iso:1</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace rdf:datatype="http://www.w3.org/2001/XMLSchema#string">protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PR:000000048</oboInOwl:id>
+	<obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A TGF-beta receptor type-2 that is a translation product of a mature transcript of the TGFBR2 gene, and that includes the core domains. Example: UniProtKB:Q62312-2.</obo:IAO_0000115>
+	</rdf:Description>
+</rdf:RDF>													
+					</textarea></p>
+											</div>
+											<div id="PR_000000048_ttl" class="tab-pane fade">
+												<p><textarea
+														style="border: none; width:100%; height:350px; font-size: 13px;">
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix obo:	<http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl:	<http://www.geneontology.org/formats/oboInOwl#> .
+
+obo:PR_000000048	rdf:type	owl:Class .
+obo:PR_000000048	rdfs:label	"TGF-beta receptor type-2 isoform RII-1" ;
+	rdfs:comment	"Category=sequence." ;
+	rdfs:subClassOf	obo:PR_000000005 .
+obo:PR_000000048	oboInOwl:hasExactSynonym	"TGF-beta receptor isoform 1" ,
+		"TGFBR2/iso:RII-1" ,
+		"TGFBR2/iso:1" ;
+	oboInOwl:hasOBONamespace	"protein" ;
+	oboInOwl:id	"PR:000000048" ;
+	obo:IAO_0000115	"A TGF-beta receptor type-2 that is a translation product of a mature transcript of the TGFBR2 gene, and that includes the core domains. Example: UniProtKB:Q62312-2." .
+									
+																			</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+									<br />
+									<a id="category_org_sequence"></a>
+									<p> An example of organism specific PRO seqeunce term <a
+											href="http://purl.obolibrary.org/obo/PR_Q68FF6-1">PR:Q68FF6-1</a> is shown
+										below in RDF Graph, RDF/XML and Turtle formats.
+									</p>
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_Q68FF6-1_graph">RDF
+													Graph</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_Q68FF6-1_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_Q68FF6-1_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_Q68FF6-1_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_Q68FF6-1_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_Q68FF6-1_xml" class="tab-pane fade">
+												<p><textarea
+														style="border: none; width:100%; height:350px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:obo="http://purl.obolibrary.org/obo/" 
+	xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+	<rdf:Description rdf:about="http://purl.obolibrary.org/obo/PR_Q68FF6-1">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+	ARF GTPase-activating protein GIT1 isoform 1 (mouse)
+	</rdfs:label>
+	<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category=organism-sequence.</rdfs:comment>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_Q68FF6"/>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000044155"/>
+	<obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+	An ARF GTPase-activating protein GIT1 isoform 3 that is encoded in the genome of mouse.
+	</obo:IAO_0000115>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mGIT1/iso:1</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UniProtKB:Q68FF6-1</oboInOwl:hasDbXref>
+	<oboInOwl:hasOBONamespace rdf:datatype="http://www.w3.org/2001/XMLSchema#string">protein</oboInOwl:hasOBONamespace>
+	<obo:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PR:Q68FF6-1</obo:id>
+	</rdf:Description>
+</rdf:RDF>
+													</textarea></p>
+											</div>
+											<div id="PR_Q68FF6-1_ttl" class="tab-pane fade">
+												<p>
+													<textarea style="border: none; width:100%; height:350px; font-size:
+														13px;">
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>. 
+
+<http://purl.obolibrary.org/obo/PR_Q68FF6-1>
+  a owl:Class ;
+  rdfs:label """
+	ARF GTPase-activating protein GIT1 isoform 1 (mouse)
+	""" ;
+  rdfs:comment "Category=organism-sequence." ;
+  rdfs:subClassOf <http://purl.obolibrary.org/obo/PR_Q68FF6>, <http://purl.obolibrary.org/obo/PR_000044155> ;
+  obo:IAO_0000115 """
+	An ARF GTPase-activating protein GIT1 isoform 3 that is encoded in the genome of mouse.
+	""" ;
+  oboInOwl:hasExactSynonym "mGIT1/iso:1" ;
+  oboInOwl:hasDbXref "UniProtKB:Q68FF6-1" ;
+  oboInOwl:hasOBONamespace "protein" ;
+  oboInOwl:id "PR:Q68FF6-1" .
+														</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
+								<h5 id="category_modification">Category=modification</h5>
+								<div style="padding-left: 30px; padding-right:30px;">
+									<p>Each PRO term at this level refers to the protein products derived from a single
+										mRNA species that differ because of some change (or lack thereof) that occurs
+										after the initiation of translation (co- and post-translational). This includes
+										sequence differences due to cleavage and chemical changes to one or more amino
+										acid residues. In general, PRO does not provide time or space information, i.e.,
+										the order in which modifications occur or the location in which they are found
+										unless such are required to properly define the term. PRO only represents the
+										final modified objects, which are relevant for function. If there is clear
+										knowledge on the equivalency of the modified forms from different organisms,
+										then the equivalent terms are defined as children of the modification level
+										terms. For example, RAC-alpha serine/threonine-protein kinase phosphorylated 3
+										from human (PR:000046294) and mouse (PR:000049940) are ortho-modified forms that
+										are phosphorylated on the position equivalent to Ser-473 of the human protein.
+										In the PRO hierarchy, they are children of the modification level term
+										PR:000049939. If the equivalency of the modified forms is not well-established,
+										the organism-modification term is defined as a child of the organism-gene level.
+										An example of organism non-specific PRO modification term <a
+											href="http://purl.obolibrary.org/obo/PR_000049939">PR:000049939</a> is shown
+										below in RDF Graph, RDF/XML and Turtle formats.</p>
+
+
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_000049939_graph">RDF
+													Graph</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000049939_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000049939_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_000049939_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_000049939_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_000049939_xml" class="tab-pane fade">
+												<textarea
+													style="border: none; width:100%; height:400px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:obo="http://purl.obolibrary.org/obo/" 
+	xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+	<rdf:Description rdf:about="http://purl.obolibrary.org/obo/PR_000046294">
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000049939"/>
+	</rdf:Description>
+	<rdf:Description rdf:about="http://purl.obolibrary.org/obo/PR_000049939">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+	<rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+	RAC-alpha serine/threonine-protein kinase phosphorylated 3
+	</rdfs:label>
+	<rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Category=modification.</rdfs:comment>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000037070"/>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000002190"/>
+	<obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+	A RAC-alpha serine/threonine-protein kinase that has been phosphorylated at the position equivalent to Ser-473 of the amino acid sequence represented by UniProtKB:P31749. Example: UniProtKB:P31749, Ser-473, MOD:00046.
+	</obo:IAO_0000115>
+	<oboInOwl:hasExactSynonym rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AKT1/Phos:3</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace rdf:datatype="http://www.w3.org/2001/XMLSchema#string">protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PR:000049939</oboInOwl:id>
+	</rdf:Description>
+	<rdf:Description rdf:about="http://purl.obolibrary.org/obo/PR_000049940">
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000049939"/>
+	</rdf:Description>
+</rdf:RDF>
+				</textarea>
+											</div>
+											<div id="PR_000049939_ttl" class="tab-pane fade">
+												<p>
+													<textarea style="border: none; width:100%; height:350px; font-size:
+						13px;">
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+
+<http://purl.obolibrary.org/obo/PR_000046294> rdfs:subClassOf <http://purl.obolibrary.org/obo/PR_000049939> .
+<http://purl.obolibrary.org/obo/PR_000049939>
+  a owl:Class ;
+  rdfs:label """RAC-alpha serine/threonine-protein kinase phosphorylated 3""" ;
+  rdfs:comment "Category=modification." ;
+  rdfs:subClassOf <http://purl.obolibrary.org/obo/PR_000037070>, <http://purl.obolibrary.org/obo/PR_000002190> ;
+  obo:IAO_0000115 """A RAC-alpha serine/threonine-protein kinase that has been phosphorylated at the position equivalent to Ser-473 of the amino acid sequence represented by UniProtKB:P31749. Example: UniProtKB:P31749, Ser-473, MOD:00046.""" ;
+  oboInOwl:hasExactSynonym "AKT1/Phos:3" ;
+  oboInOwl:hasOBONamespace "protein" ;
+  oboInOwl:id "PR:000049939" .
+
+obo:PR_000049940 rdfs:subClassOf obo:PR_000049939 .
+				</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+									<br/>
+									<a id="category_org_modification"></a>
+									 <p>
+									An example of organism specific PRO modification term <a
+										href="http://purl.obolibrary.org/obo/PR_000046294">PR:000046294</a> is shown
+									below in RDF Graph, RDF/XML and Turtle formats.</p>
+
+
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_000046294_graph">RDF
+													Graph</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000046294_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000046294_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_000046294_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_000046294_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_000046294_xml" class="tab-pane fade">
+												<textarea
+													style="border: none; width:100%; height:400px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:owl="http://www.w3.org/2002/07/owl#"
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+			xmlns:obo="http://purl.obolibrary.org/obo/"
+			xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+	<owl:Class rdf:about="http://purl.obolibrary.org/obo/PR_000046294">
+	<rdfs:comment>Category=organism-modification.</rdfs:comment>
+	<rdfs:label>RAC-alpha serine/threonine-protein kinase phosphorylated 3 (human)</rdfs:label>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000049939"/>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_P31749"/>
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002160"/>
+		<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+		<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/MOD_00046"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<obo:IAO_0000115>A RAC-alpha serine/threonine-protein kinase phosphorylated 3 in human. UniProtKB:P31749, Ser-473, MOD:00046.</obo:IAO_0000115>
+	<oboInO:hasDbXref>Reactome:R-HSA-377265</oboInO:hasDbXref>
+	<oboInO:hasExactSynonym>UniProtKB:P31749, Ser-473, MOD:00046</oboInO:hasExactSynonym>
+	<oboInO:hasExactSynonym>hAKT1/Phos:3</oboInO:hasExactSynonym>
+	<oboInO:hasOBONamespace>protein</oboInO:hasOBONamespace>
+	<oboInO:id>PR:000046294</oboInO:id>
+	<owl:equivalentClass>
+		<owl:Class>
+		<owl:intersectionOf>
+			<rdf:Description>
+			<rdf:first rdf:resource="http://purl.obolibrary.org/obo/PR_000049939"/>
+			<rdf:rest>
+				<rdf:Description>
+				<rdf:first>
+					<owl:Restriction>
+					<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002160"/>
+					<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+					</owl:Restriction>
+				</rdf:first>
+
+				<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+				</rdf:Description>
+			</rdf:rest>
+
+			</rdf:Description>
+		</owl:intersectionOf>
+
+		</owl:Class>
+	</owl:equivalentClass>
+
+	</owl:Class>
+
+</rdf:RDF>
+				</textarea>
+											</div>
+											<div id="PR_000046294_ttl" class="tab-pane fade">
+												<p>
+													<textarea style="border: none; width:100%; height:350px; font-size:
+						13px;">
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>. 
+
+obo:PR_000046294  a               owl:Class ;
+        rdfs:comment              "Category=organism-modification." ;
+        rdfs:label                "RAC-alpha serine/threonine-protein kinase phosphorylated 3 (human)" ;
+        rdfs:subClassOf           obo:PR_000049939 , obo:PR_P31749 ;
+        rdfs:subClassOf           [ a                   owl:Restriction ;
+                                    owl:onProperty      obo:RO_0002160 ;
+                                    owl:someValuesFrom  obo:NCBITaxon_9606
+                                  ] ;
+        rdfs:subClassOf           [ a                   owl:Restriction ;
+                                    owl:onProperty      obo:BFO_0000051 ;
+                                    owl:someValuesFrom  obo:MOD_00046
+                                  ] ;
+        obo:IAO_0000115           "A RAC-alpha serine/threonine-protein kinase phosphorylated 3 in human. UniProtKB:P31749, Ser-473, MOD:00046." ;
+        oboInOwl:hasDbXref        "Reactome:R-HSA-377265" ;
+        oboInOwl:hasExactSynonym  "UniProtKB:P31749, Ser-473, MOD:00046" , "hAKT1/Phos:3" ;
+        oboInOwl:hasOBONamespace  "protein" ;
+        oboInOwl:id               "PR:000046294" ;
+        owl:equivalentClass       [ a                   owl:Class ;
+                                    owl:intersectionOf  ( obo:PR_000049939
+                                                          [ a                   owl:Restriction ;
+                                                            owl:onProperty      obo:RO_0002160 ;
+                                                            owl:someValuesFrom  obo:NCBITaxon_9606
+                                                          ]
+                                                        )
+                                  ] .
+				</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
+								
+								<h5 id="category_complex">Category=complex</h5>
+								<div style="padding-left: 30px; padding-right:30px;">
+									<p>Each PRO term at the complex level ultimately traces to the general term
+										"protein-containing complex" found in GO (GO:0032991), defined as "A stable
+										assembly of two or more macromolecules, i.e. proteins, nucleic acids,
+										carbohydrates or lipids, in which at least one component is a protein and the
+										constituent parts function together". Indeed, complex-level terms in PRO are
+										imported from GO whenever possible. However, because GO complexes are
+										(predominantly) defined with respect to function, PRO will create complex terms
+										when a component-specific definition is desired. When doing so, PRO represents
+										complexes explicitly--that is, by subunit composition--defining each member of
+										the complex at the level of its isoform, variant, or modified form, whenever
+										possible. Most complex-related terms defined by PRO are species-specific. Note
+										that a protein in its monomeric state, linked non-covalently to a small
+										chemical, is not considered a protein complex by the above definition, but it
+										can be defined as a subclass of the protein term using the CHEBI ID for the
+										small chemical and the relation “non-covalently_bound_to”. An example of
+										organism non-specific PRO complex term
+										<a href="http://purl.obolibrary.org/obo/PR_000027291">PR:000027291</a> is
+										shown below in RDF Graph, RDF/XML and Turtle formats.</p>
+
+
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_000027291_graph">RDF
+													Graph</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000027291_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000027291_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_000027291_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_000027291_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_000027291_xml" class="tab-pane fade">
+												<textarea
+													style="border: none; width:100%; height:400px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:owl="http://www.w3.org/2002/07/owl#"
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+			xmlns:obo="http://purl.obolibrary.org/obo/"
+			xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+	<owl:Class rdf:about="http://purl.obolibrary.org/obo/PR_000027291">
+	<rdfs:comment>Category=complex.</rdfs:comment>
+	<rdfs:label>phosphorylase kinase complex PHKL</rdfs:label>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0005964"/>
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onClass rdf:resource="http://purl.obolibrary.org/obo/PR_000012659"/>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002180"/>
+		<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:qualifiedCardinality>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onClass rdf:resource="http://purl.obolibrary.org/obo/PR_000004978"/>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002180"/>
+		<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:qualifiedCardinality>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onClass rdf:resource="http://purl.obolibrary.org/obo/PR_000012662"/>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002180"/>
+		<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:qualifiedCardinality>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onClass rdf:resource="http://purl.obolibrary.org/obo/PR_000012660"/>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002180"/>
+		<owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:qualifiedCardinality>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<obo:IAO_0000115>A phosphorylase kinase complex whose alpha and gamma subunits are of the liver isoform type.</obo:IAO_0000115>
+	<oboInOwl:hasExactSynonym>PHKL</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace>protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:id>PR:000027291</oboInOwl:id>
+	</owl:Class>
+
+</rdf:RDF>
+
+					</textarea>
+											</div>
+											<div id="PR_000027291_ttl" class="tab-pane fade">
+												<p>
+													<textarea style="border: none; width:100%; height:350px; font-size:
+							13px;">
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>. 
+
+obo:PR_000027291  a               owl:Class ;
+        rdfs:comment              "Category=complex." ;
+        rdfs:label                "phosphorylase kinase complex PHKL" ;
+        rdfs:subClassOf           obo:GO_0005964 ;
+        rdfs:subClassOf           [ a                         owl:Restriction ;
+                                    owl:onClass               obo:PR_000012659 ;
+                                    owl:onProperty            obo:RO_0002180 ;
+                                    owl:qualifiedCardinality  "4"^^xsd:nonNegativeInteger
+                                  ] ;
+        rdfs:subClassOf           [ a                         owl:Restriction ;
+                                    owl:onClass               obo:PR_000004978 ;
+                                    owl:onProperty            obo:RO_0002180 ;
+                                    owl:qualifiedCardinality  "4"^^xsd:nonNegativeInteger
+                                  ] ;
+        rdfs:subClassOf           [ a                         owl:Restriction ;
+                                    owl:onClass               obo:PR_000012662 ;
+                                    owl:onProperty            obo:RO_0002180 ;
+                                    owl:qualifiedCardinality  "4"^^xsd:nonNegativeInteger
+                                  ] ;
+        rdfs:subClassOf           [ a                         owl:Restriction ;
+                                    owl:onClass               obo:PR_000012660 ;
+                                    owl:onProperty            obo:RO_0002180 ;
+                                    owl:qualifiedCardinality  "4"^^xsd:nonNegativeInteger
+                                  ] ;
+        obo:IAO_0000115           "A phosphorylase kinase complex whose alpha and gamma subunits are of the liver isoform type." ;
+        oboInOwl:hasExactSynonym  "PHKL" ;
+        oboInOwl:hasOBONamespace  "protein" ;
+        oboInOwl:id               "PR:000027291" .
+	</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+									<br />
+									<a id="category_org_complex"></a>
+									<p> An example of organism specific PRO complex term <a
+											href="http://purl.obolibrary.org/obo/PR_000036137">PR:000036137</a> is
+										shown below in RDF Graph, RDF/XML and Turtle formats.</p>
+									<div>
+										<!-- Nav tabs -->
+										<ul class="nav nav-pills" role="tablist">
+											<li class="nav-item active">
+												<a class="nav-link active" data-toggle="pill"
+													href="#PR_000036137_graph">RDF
+													Graph</a>
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000036137_xml">RDF/XML</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-toggle="pill"
+													href="#PR_000036137_ttl">Turtle</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div id="PR_000036137_graph" class="tab-pane active">
+												<p><img src="images/rdf/PR_000036137_rdf_graph.png"
+														style="width:100%;"></img></p>
+											</div>
+											<div id="PR_000036137_xml" class="tab-pane fade">
+												<textarea
+													style="border: none; width:100%; height:400px; font-size: 13px;">
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:owl="http://www.w3.org/2002/07/owl#"
+			xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+			xmlns:obo="http://purl.obolibrary.org/obo/"
+			xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+	<owl:Class rdf:about="http://purl.obolibrary.org/obo/PR_000036137">
+	<rdfs:comment>Category=organism-complex.</rdfs:comment>
+	<rdfs:label>lipopolysaccharide receptor complex 3; endosome membrane (human)</rdfs:label>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PR_000025773"/>
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002160"/>
+		<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<rdfs:subClassOf>
+		<owl:Restriction>
+		<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0001025"/>
+		<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0010008"/>
+		</owl:Restriction>
+	</rdfs:subClassOf>
+
+	<obo:IAO_0000115>A lipopolysaccharide receptor complex 3 (human) that is localized to the endosome membrane.</obo:IAO_0000115>
+	<oboInOwl:hasExactSynonym>h(LPSR:3)endosome</oboInOwl:hasExactSynonym>
+	<oboInOwl:hasOBONamespace>protein</oboInOwl:hasOBONamespace>
+	<oboInOwl:hasRelatedSynonym>TLR4:MD2:LPS:CD14 [endosome membrane] (human)</oboInOwl:hasRelatedSynonym>
+	<oboInOwl:id>PR:000036137</oboInOwl:id>
+	<owl:equivalentClass>
+		<owl:Class>
+		<owl:intersectionOf>
+			<rdf:Description>
+			<rdf:first rdf:resource="http://purl.obolibrary.org/obo/PR_000025773"/>
+			<rdf:rest>
+				<rdf:Description>
+				<rdf:first>
+					<owl:Restriction>
+					<owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0001025"/>
+					<owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0010008"/>
+					</owl:Restriction>
+				</rdf:first>
+
+				<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+				</rdf:Description>
+			</rdf:rest>
+
+			</rdf:Description>
+		</owl:intersectionOf>
+
+		</owl:Class>
+	</owl:equivalentClass>
+
+	</owl:Class>
+
+</rdf:RDF>
+
+				</textarea>
+											</div>
+											<div id="PR_000036137_ttl" class="tab-pane fade">
+												<p>
+													<textarea
+														style="border: none; width:100%; height:400px; font-size: 13px;">
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>. 
+
+obo:PR_000036137  a                 owl:Class ;
+        rdfs:comment                "Category=organism-complex." ;
+        rdfs:label                  "lipopolysaccharide receptor complex 3; endosome membrane (human)" ;
+        rdfs:subClassOf             obo:PR_000025773 ;
+        rdfs:subClassOf             [ a                   owl:Restriction ;
+                                      owl:onProperty      obo:RO_0002160 ;
+                                      owl:someValuesFrom  obo:NCBITaxon_9606
+                                    ] ;
+        rdfs:subClassOf             [ a                   owl:Restriction ;
+                                      owl:onProperty      obo:RO_0001025 ;
+                                      owl:someValuesFrom  obo:GO_0010008
+                                    ] ;
+        obo:IAO_0000115             "A lipopolysaccharide receptor complex 3 (human) that is localized to the endosome membrane." ;
+        oboInOwl:hasExactSynonym    "h(LPSR:3)endosome" ;
+        oboInOwl:hasOBONamespace    "protein" ;
+        oboInOwl:hasRelatedSynonym  "TLR4:MD2:LPS:CD14 [endosome membrane] (human)" ;
+        oboInOwl:id                 "PR:000036137" ;
+        owl:equivalentClass         [ a                   owl:Class ;
+                                      owl:intersectionOf  ( obo:PR_000025773
+                                                            [ a                   owl:Restriction ;
+                                                              owl:onProperty      obo:RO_0001025 ;
+                                                              owl:someValuesFrom  obo:GO_0010008
+                                                            ]
+                                                          )
+                                    ] .
+
+				</textarea>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
+						</article>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

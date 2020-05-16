@@ -1,0 +1,64 @@
+########### 
+# GQ4. Retrieve all PRO terms that pertain to products of a specified gene.
+########### 
+ 
+# The following query finds all PRO terms that pertain to products
+# of the mouse Ctnnb1 gene, denoted by MGI:88276. To retrieve the
+# analogous list for a different gene of interest, please substitute
+# MGI:88276 with the relevant database prefix (selected from the first
+# PREFIX block below), along with a precise identifier. For example,
+# to get all PRO terms relevant to human NCOA3, replace MGI:88276
+# with HGNC:7670 on the VALUES line (first indented line within
+# the WHERE block), or to get those relevant to fission yeast hht3,
+# replace with PomBase:SPBC1105.11c.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>  
+PREFIX HGNC: <http://www.genenames.org/cgi-bin/gene_symbol_report?hgnc_id=>
+PREFIX CGNC: <http://birdgenenames.org/cgnc/GeneReport?id=>
+PREFIX MGI: <http://www.informatics.jax.org/marker/MGI:>
+PREFIX EcoGene: <http://www.ecogene.org/gene/>
+PREFIX SGD: <http://www.yeastgenome.org/cgi-bin/locus.fpl?dbid=>
+PREFIX PomBase: <http://www.pombase.org/spombe/result/>
+PREFIX dictyBase: <http://dictybase.org/gene/>
+PREFIX FlyBase: <http://flybase.org/reports/>
+PREFIX RGD: <http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=>
+PREFIX TAIR: <http://www.arabidopsis.org/servlets/TairObject?type=locus&name=>
+PREFIX Araport: <https://www.araport.org/locus/>
+PREFIX WormBase: <http://www.wormbase.org/species/c_elegans/gene/>
+PREFIX ZFIN: <http://zfin.org/action/marker/view/>
+ 
+PREFIX has_gene_template: <http://purl.obolibrary.org/obo/pr#has_gene_template>
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+PREFIX pr: <http://purl.obolibrary.org/obo/pr#>
+SELECT DISTINCT ?PRO_term ?Label ?Gene ?PRO_short_label ?PRO_proteoform_std
+FROM <http://purl.obolibrary.org/obo/pr>
+WHERE
+{
+   VALUES ?gn_id { MGI:88276 }
+   ?PRO_term rdfs:subClassOf+ ?r . 
+   ?r owl:onProperty has_gene_template: . 
+   ?r owl:someValuesFrom ?gn_id . 
+   ?PRO_term rdfs:label ?_Label .
+   OPTIONAL {
+     ?x a owl:Axiom .
+     ?x oboInOwl:hasSynonymType pr:PRO-short-label .
+     ?x owl:annotatedSource ?PRO_term .
+     ?x owl:annotatedTarget ?_PRO_short_label
+   } . 
+   OPTIONAL {
+     ?y a owl:Axiom .
+     ?y oboInOwl:hasSynonymType pr:PRO-proteoform-std .
+     ?y owl:annotatedSource ?PRO_term .
+     ?y owl:annotatedTarget ?_PRO_proteoform_std
+   } . 
+   OPTIONAL {
+     ?gn_id rdfs:label ?g
+   } .
+   bind(str(?_Label) as ?Label)
+   bind(str(?_PRO_short_label) as ?PRO_short_label)
+   bind(str(?_PRO_proteoform_std) as ?PRO_proteoform_std)
+   bind(str(?g) as ?Gene)
+}
+ORDER BY ASC(?_PRO_short_label)

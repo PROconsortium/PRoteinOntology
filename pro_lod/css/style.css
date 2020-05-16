@@ -1,0 +1,334 @@
+html {
+  padding: 0;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: "images/temp/bg02.gif";
+}
+#header {
+  padding: 0;
+  margin: 0;
+  background-color: #86b9d9;
+  color: #ffffff;
+  border-bottom: 1px solid #aaa;
+}
+#header h1 {
+  font-size: 16pt;
+  font-weight: normal;
+  text-align: left;
+  vertical-align: middle;
+  padding: 4px 8px 4px 8px;
+  margin: 0px 0px 0px 0px;
+}
+#menu {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 0px;
+  clear: right;
+  float: right;
+}
+#intro,
+#main {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+#help {
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 80%;
+}
+#footer {
+  width: 100%;
+  float: left;
+  clear: left;
+  margin: 2em 0 0;
+  padding-top: 0.7ex;
+  border-top: 1px solid #aaa;
+  font-size: 8pt;
+  text-align: center;
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+fieldset label {
+  font-weight: normal;
+  white-space: nowrap;
+  font-size: 11pt;
+  color: #000;
+}
+fieldset label.n {
+  display: block;
+  margin-top: 5px;
+  width: 160px;
+  float: left;
+  white-space: nowrap;
+}
+fieldset label.n:after {
+  content: ":";
+}
+fieldset label.n1 {
+  display: block;
+  margin-top: 5px;
+  width: 160px;
+  float: left;
+  white-space: nowrap;
+}
+fieldset label.ckb {
+  width: 160px;
+  font-weight: normal;
+  font-size: 10pt;
+}
+fieldset label.ckb:after {
+  content: "";
+}
+fieldset textarea {
+  width: 99%;
+  font-family: monospace;
+  font-size: 10pt;
+}
+#cxml {
+  clear: both;
+  display: block;
+}
+#savefs {
+  clear: both;
+  display: block;
+}
+span.info {
+  font-size: 9pt;
+  white-space: nowrap;
+  height: 2em;
+}
+br {
+  clear: both;
+}
+
+table.stats {
+  font-size: 11pt;
+  background-color: #ffffff;
+  border: 2px solid #2283bf;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table.stats td {
+  border: 2px solid #2283bf;
+  color: #000000;
+  padding: 5px;
+}
+table.stats tr {
+  border: 2px solid #2283bf;
+  color: #000000;
+  padding: 5px;
+}
+table.stats th {
+  border: 2px solid #2283bf;
+  color: #000000;
+  background-color: #cce6ff;
+  padding: 5px;
+  text-align: center;
+}
+th {
+  text-align: center;
+}
+
+h3 {
+  color: rgba(5, 91, 238, 0.933);
+  font-weight: bolder;
+  font-size: 18pt;
+}
+
+h4 {
+  color: rgb(0, 38, 255);
+}
+/* .yasgui .CodeMirror pre {
+  line-height: 1em;
+} */
+
+td > pre {
+  margin: 1em !important;
+  font-size: 11pt;
+  color: black;
+  line-height: 1.1em;
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+td > pre b {
+  color: navy;
+}
+
+#pro_lod a:link,
+#pro_lod a:visited {
+  color: rgb(8, 8, 235);
+  text-decoration: none;
+}
+#pro_lod a:hover {
+  /* color: rgb(26, 205, 10); */
+  text-decoration: underline;
+}
+
+.table-of-contents {
+  border: #d3d3d3 solid 1px;
+  background: #eee;
+  font-size: 1em;
+  padding: 1em;
+}
+.table-of-contents ul {
+  padding: 5px;
+}
+.table-of-contents > ul {
+  padding: 0;
+}
+.table-of-contents li {
+  margin-left: 15px;
+}
+
+.table-of-contents a:hover,
+.table-of-contents a:active {
+  text-decoration: underline;
+}
+
+.nav-link.active {
+  color: white !important;
+}
+
+h3:target {
+  animation: highlight 1s ease;
+}
+
+@keyframes highlight {
+  from {
+    background: yellow;
+  }
+  to {
+    background: white;
+  }
+}
+
+#toTop {
+  padding: 5px 3px;
+  background: #3617ff;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  right: 5px;
+  display: none;
+}
+.performance {
+  font-size: 14px;
+  border: 1px solid navy;
+}
+.performance tr {
+  background-color: #ddd;
+}
+
+h5 {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(3, 56, 105);
+}
+
+/* .active {
+  background-color: #91cce4;
+} */
+.navbar {
+  background-color: #94befd;
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+.nav-item:hover {
+  background-color: rgba(236, 234, 243, 0.589);
+}
+/* .nav-link .active {
+  color: white;
+} */
+.navbar-nav > li {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.dropdown .dropdown-menu .dropdown-item:active,
+.dropdown .dropdown-menu .dropdown-item:hover {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(108, 106, 141) !important;
+}
+
+.tab-pane {
+  border: 1px solid #ccc !important;
+  height: 350 px;
+}
+
+table.boxTable {
+  font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #cccccc;
+  background-color: #ffffff;
+  border: 1px solid #2283bf;
+  margin-bottom: 1px;
+}
+table.boxTable td {
+  color: #000000;
+}
+
+table.boxTable a:hover {
+  background-color: rgb(194, 209, 248);
+  text-decoration: none !important;
+}
+.yasgui .yasr table.dataTable tr.even {
+  background-color: #f2f2f2;
+}
+
+.yasgui .yasr table.dataTable tr:hover {
+  background-color: #ffff99;
+}
+
+.yasgui .yasr table.dataTable thead th {
+  background-color: #99ccff !important;
+}
+
+.swagger-ui .response-col_status {
+  width: 20%;
+}
+
+.swagger-ui .parameters-col_name {
+  width: 20%;
+}
+
+.global-server-container {
+  background-color: yellow;
+}
+
+.article_title {
+  font-weight: bold;
+  font-size: 20pt;
+  color: rgb(44, 78, 189);
+  text-align: center;
+}
+
+.dropdown-item {
+  font-size: small;
+}
+
+.tab {
+  margin-left: 40px;
+}
+
+.tab2 {
+  margin-left: 80px;
+}
+
+article {
+  font-size: 13pt;
+}
+
+ul.list li {
+  display: flex;
+  list-style: none;
+}

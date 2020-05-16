@@ -1,0 +1,20 @@
+########### 
+# GQ1. Retrieve direct subclasses (PRO term, Label, and Category comment) of 
+#    TGF-beta superfamily receptor type-1.
+########### 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX tgfbeta_superfamily_receptor_type_1: <http://purl.obolibrary.org/obo/PR_000000006>
+
+SELECT ?PRO_term ?Label ?Category
+FROM <http://purl.obolibrary.org/obo/pr>
+WHERE
+{
+    ?PRO_term rdfs:subClassOf tgfbeta_superfamily_receptor_type_1: .
+    ?PRO_term rdfs:label ?_Label .
+    ?PRO_term rdfs:comment ?_Category .
+    FILTER (regex(?_Category,"Category=.*"))
+    BIND(str(?_Label) as ?Label) .
+    BIND(strafter(strbefore(str(?_Category), "."), "=") as ?Category) .
+}
+

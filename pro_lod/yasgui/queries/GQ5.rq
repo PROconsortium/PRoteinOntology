@@ -1,0 +1,41 @@
+########### 
+# GQ5. Retrieve information pertaining to the gene encoding a protein of interest. 
+########### 
+ 
+# The following query will retrieve information pertaining to the gene 
+# that encodes what will ultimately become cyclin-dependent kinase 1 
+# phosphorylated 1 (Schizosaccharomyces pombe), PRO term PR:000045540. 
+# To find the analogous gene (if any) for a term of interest, substitute 
+# the appropriate PRO identifier for PR:000045540 on the VALUES line 
+# within the WHERE block. 
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>  
+PREFIX has_gene_template: <http://purl.obolibrary.org/obo/pr#has_gene_template> 
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> 
+PREFIX PR: <http://purl.obolibrary.org/obo/PR_> 
+
+SELECT DISTINCT ?Query ?Query_Label ?Gene_Level_Parent ?Gene_Level_Parent_Label ?Gene ?Gene_Identifier 
+FROM <http://purl.obolibrary.org/obo/pr> 
+WHERE 
+{ 
+   VALUES ?Query { PR:000045540 } 
+   ?glp rdfs:label ?_Label . 
+   { 
+     ?glp rdfs:subClassOf ?r .  
+     ?r owl:onProperty has_gene_template: .  
+     ?r owl:someValuesFrom ?gn_id .  
+     ?Query rdfs:subClassOf? ?glp . 
+   } . 
+   ?Query rdfs:label ?ql 
+   OPTIONAL { 
+     ?gn_id rdfs:label ?g 
+   } . 
+   BIND(str(?_Label) as ?Gene_Level_Parent_Label) 
+   BIND(str(?ql) as ?Query_Label) 
+   BIND(?glp as ?Gene_Level_Parent) 
+   BIND(str(?g) as ?Gene) 
+   BIND(?gn_id as ?Gene_Identifier) 
+} 
+

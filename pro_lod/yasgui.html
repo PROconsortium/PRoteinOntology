@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Protein Ontology Linked Open Data - YASGUI SPARQL GUI</title>
+	<link href='yasgui/yasgui.min.css' rel='stylesheet' type='text/css'/>
+	<!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/yasgui/2.7.7/yasgui.min.css' rel='stylesheet' type='text/css'/> -->
+
+    <style>
+      /** comment this if you'd like to show the endpoint selector **/
+      .yasgui .endpointText {display:none !important;}
+     
+    </style>
+	 <link href="https://proconsortium.org/styles.css" type="text/css" rel="stylesheet">
+	 	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"  rel='stylesheet' type='text/css' />
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="js/pro_lod.js"></script>
+</head>
+
+<body>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%"">
+		<tr>
+			<td width=" 100%">
+		<table cellSpacing="0" cellPadding="0" width="100%" background="images/bannerBg.png" border="0">
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap><img src="images/empty_line.GIF" width="1"
+						height="3"></td>
+			</tr>
+			<tr>
+				<td><img src="images/empty_line.GIF" width="8" height="76"></td>
+				<td align=center>
+					<img src="images/empty_line.GIF" width="1" height="3"><br />
+					<img src="images/empty_line.GIF" width="3" height="1">
+					<a href="https://proconsortium.org/pro.shtml">
+						<img alt="back to PRO homepage" src="images/PROlogofinalEDGclear.png" width="140" heightxx="42"
+							border="0">
+					</a>
+					<img src="images/empty_line.GIF" width="3" height="1"><br />
+					<img src="images/empty_line.GIF" width="1" height="2">
+				</td>
+				<td width="80%">
+					<table border="0" cellPadding="0" cellSpacing="0" class="PRO_banner1">
+						<tr>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+							<td><img src="images/hm.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro.shtml"
+									class="ProMenu">Home</a></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/browse.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_browse.shtml"
+									class="ProMenu">Browse</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/search.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_search.shtml"
+									class="ProMenu">Search</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sparql.png" width="18">&nbsp;</td>
+							<!-- <td align="center" nowrap><a href="https://proconsortium.org/pro_sparql.shtml"
+									class="ProMenu" style="color:#FF9933;">SPARQL</a> </td>
+							<td></td> -->
+							<td align="center" nowrap><a href="index.html"
+								class="ProMenu" style="color:#FF9933;">LOD</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sta.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/cgi-bin/sta_pro"
+									class="ProMenu">Statistics</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/download.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_download.shtml"
+									class="ProMenu">Download</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+
+				<td align="center">
+					<table border="0" cellPadding="3" cellSpacing="3" class="nrm02">
+						<tr>
+							<form name="prosearch" method="get"
+								action="https://proconsortium.org/cgi-bin/textsearch_pro">
+								<td nowrap>
+									<input type="text" name="query0" size="30" class="nrm11"
+										placeholder="PR:000025934, smad">
+								</td>
+								<td><input type="image" name="search" src="images/searchWhite.png">
+									<input type="hidden" name="field0" value="ALLFLDS">
+								</td>
+								<td><img src="images/empty_line.GIF" width="4">
+								</td>
+							</form>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor="#EEEEEE"><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td>
+					<table border="0" cellPadding="3" cellSpacing=3 class=PRO_banner2>
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/cgi-bin/race_pro">RACE-PRO</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="http://purl.obolibrary.org/obo/pr/tracker"
+									target=_b>PRO tracker</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://pir17.georgetown.edu/confluence/display/PROWIKI/Home"
+									target=_b>Wiki</a></TD>
+							<td><img src="images/empty_line.GIF" width="5"></td>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor=#EEEEEE><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td align=right>
+					<table border="0" cellPadding="3" cellSpacing="3" class="PRO_banner2">
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org//pro_cst.shtml">PRO Consortium</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org//pro_pub.shtml">Publications</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org//pro_dcmtt.shtml">Documentation</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap>
+					<img src="images/empty_line.GIF" width="1" height="3"></td>
+			</tr>
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+		</table>
+
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%" class="nrm04">
+						<tbody>
+							<tr>
+								<td align="center" class="text-primary">
+									<h3><b>Protein Ontology Linked Open Data</b></h3>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="padding: 1em 2em 0em 2em ; margin: 5em 5em 5em 5em auto;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" class="nrm04">
+							<tbody>
+								<tr>
+									<td>
+										<nav class="navbar navbar-expand-sm navbar-dark">
+											<!-- Links -->
+											<ul class="navbar-nav">
+												<li class="nav-item">
+													<a class="nav-link" href="index.html">Introduction</a>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">RDF Model
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="rdf.html#uri">PRO Uniform Resource Identifiers (URIs)</a>
+														<a class="dropdown-item" href="rdf.html#pro_cat">Types of PRO Terms</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Dataset Description
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="dataset.html#void">VoID</a>
+														<a class="dropdown-item" href="dataset.html#linkset">Linked Dataset</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link active dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Data Access
+													</a>
+													<div class="dropdown-menu">
+															<a class="dropdown-item" href="release.html">Data
+																	Dumps</a>
+														<a class="dropdown-item"
+															href="https://sparql.proconsortium.org/virtuoso/fct/">Faceted Browser</a>
+															
+														<a class="dropdown-item"
+															href="api.html">RESTful
+															APIs</a>
+															<a class="dropdown-item" href="yasgui.html">SPARQL
+																GUI</a>
+													</div>
+												</li>
+
+												<li class="nav-item">
+													<a class="nav-link" href="fair.html">FAIRness</a>
+												</li>
+											</ul>
+										</nav>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<article id="pro_lod">
+							<div style="margin: 2em 2em 2em 2em;">
+								<div class="article_title">PRO LOD SPARQL GUI<br></div>
+									<br>
+								<!-- <div id="toTop">Back to Top</div> -->
+								
+								<p>To use PRO Virtuoso SPARQL Endpoint Server directly, please click <a
+										href="https://sparql.proconsortium.org/virtuoso/sparql">here</a>.</p>
+										
+								<div class="text-left"><span style="font-size: 18pt;" class="text-primary font-weight-bold">Example SPARQL Queries</span> (Click each query to see its conent and execution)<br><br></div>
+								<table border=2 bgcolor="#ffffff" width=100% cellpadding=4 cellspacing=0
+									class="boxTable">
+									<tr>
+										<td valign="top" width="33%">
+											<h5>Federated Query</h5>
+											<ul>
+												<li><a onclick="javascript:loadQuery('FQ1');">FQ1: get UniProt AC and
+														Mnemonic for PRO term</a></li>
+												<li><a onclick="javascript:loadQuery('FQ2');">FQ2: get all PRO human
+														genes whose UniProt counterpart has variants with loss of
+														function implicated in disease.</a></li>
+												<li><a onclick="javascript:loadQuery('FQ3');">FQ3: get all PRO human
+														genes whose UniProt counterpart has variants with gain of
+														function implicated in disease.</a></li>
+												<li><a onclick="javascript:loadQuery('FQ4');">FQ4: for proteins in ProKinO,
+														count the number of homologs and modifications in PRO.</a></li>
+												<li><a onclick="javascript:loadQuery('FQ5');">FQ5: for proteins 'EGFR'
+														'PKCB' 'PKCT' in ProKinO, get their proteoforms that are part of
+														complexes from PRO.</a></li>
+												<li><a onclick="javascript:loadQuery('FQ6');">FQ6: for proteins 'EGFR'
+														'PKCB' 'PKCT' in ProKinO, get their proteoforms with molecular
+														functions from PRO.</a></li>
+												<li><a onclick="javascript:loadQuery('FQ7');">FQ7: for protein 'EGFR' in
+														ProKinO, get its proteoforms from PRO that have a modification
+														at site 768.</a></li>
+												<li><a onclick="javascript:loadQuery('FQ8');">FQ8: Find variants in UniProt or DisGeNET for AlzForum PRO terms.</a></li>
+											</ul>
+										</td>
+										<td valign="top"  width="34%">
+											<h5>Proteoforms Query</h5>
+											<ul>
+												<li><a onclick="javascript:loadQuery('PQ1');">PQ1: get all PRO terms that are modified forms.</a></li>
+												<li><a onclick="javascript:loadQuery('PQ2');">PQ2: get all PRO terms that are cleaved forms.</a></li>
+												<li><a onclick="javascript:loadQuery('PQ3');">PQ3: get PRO terms with a specified protein modification.</a></li>
+												<li><a onclick="javascript:loadQuery('PQ4');">PQ4: get proteoforms
+														associated with disease progression.</a></li>
+												<li><a onclick="javascript:loadQuery('PQ5');">PQ5: get
+														phospho-proteoforms and their kinases.</a></li>
+											</ul>
+										</td>
+										<td valign="top">
+											<h5>General Query</h5>
+											<ul>
+												<li><a onclick="javascript:loadQuery('GQ1');">GQ1: get direct subclasses
+														of TGF-beta superfamily receptor type-1.</a></li>
+												<li><a onclick="javascript:loadQuery('GQ2');">GQ2: get all subclasses of
+														TGF-beta superfamily receptor type-1.</a></li>
+												<li><a onclick="javascript:loadQuery('GQ3');">GQ3: get all functional
+														annotations for PR:000037190.</a></li>
+												<li><a onclick="javascript:loadQuery('GQ4');">GQ4: get PRO terms that
+														pertain to products of a specified gene.</a></li>
+												<li><a onclick="javascript:loadQuery('GQ5');">GQ5: get information
+														pertaining to the gene encoding a protein of interest.</a></li>
+												<!-- <li><a onclick="javascript:loadQuery('GQ6');">GQ6: get orthologs from a
+														list of PRO IDs at organism-gene level.</a></li> -->
+											</ul>
+										</td>
+									</tr>
+								</table>
+								<br>
+								<table border="0" cellspacing="0" cellpadding="0" width="100%" class="nrm04">
+									<tbody>
+										<tr>
+											<td>
+												<div id='yasgui'></div>
+	<script src='yasgui/yasgui.min.js'></script>
+	<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/yasgui/2.7.7/yasgui.min.js'></script> -->
+
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+    <script type="text/javascript">
+	    var yasgui = YASGUI(document.getElementById("yasgui"), {
+        //Uncomment below to change the default endpoint
+        //Note: If you've already opened the YASGUI page before, you should first clear your
+        //local-storage cache before you will see the changes taking effect 
+        yasqe:{sparql:{endpoint:'https://sparql.proconsortium.org/virtuoso/sparql'}}
+      });
+		function loadQuery (queryname) {
+		var yasqe = yasgui.current().yasqe;
+				jQuery.ajax({
+						url: "yasgui/queries/" + queryname + ".rq",
+						dataType: 'text',
+						success: function (data) {
+								//alert(data);
+								yasqe.setValue(data);
+								yasqe.query();
+						}
+				});
+		}
+    </script>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+					</div>
+
+					</article>
+
+
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

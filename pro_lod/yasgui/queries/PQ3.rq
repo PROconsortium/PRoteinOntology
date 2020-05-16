@@ -1,0 +1,47 @@
+########### 
+# PQ3. Retrieve all PRO terms that represent a specified protein modification form.
+########### 
+ 
+# The following query will retrieve all PRO terms that represent acetylated
+# proteins. More precisely, the results will be terms and that contain the
+# word "acetylated" that are also categorized as modified. To search for other
+# types of modifications, substitute a modification of interest on the
+# VALUES line (first indented line within the WHERE block).
+#
+# Please note: the quotes are required.
+#
+# Examples: phosphorylated methylated ubiquitinated sumoylated glycosylated
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+PREFIX pr: <http://purl.obolibrary.org/obo/pr#>
+
+SELECT DISTINCT ?PRO_term ?Label ?Category ?PRO_short_label ?PRO_proteoform_std
+FROM <http://purl.obolibrary.org/obo/pr>
+WHERE
+{
+   VALUES ?mod { "acetylated" }
+   ?PRO_term rdfs:label ?_Label .
+   ?PRO_term rdfs:comment ?_Category .
+   OPTIONAL {
+     ?x a owl:Axiom .
+     ?x oboInOwl:hasSynonymType pr:PRO-short-label .
+     ?x owl:annotatedSource ?PRO_term .
+     ?x owl:annotatedTarget ?_PRO_short_label
+   } . 
+   OPTIONAL {
+     ?y a owl:Axiom .
+     ?y oboInOwl:hasSynonymType pr:PRO-proteoform-std .
+     ?y owl:annotatedSource ?PRO_term .
+     ?y owl:annotatedTarget ?_PRO_proteoform_std
+  } . 
+   FILTER (regex(?_Category,"Category=.*modification")
+     && regex(?Label, CONCAT(" ", ?mod))) .
+   BIND(str(?_Label) as ?Label) .
+   BIND(strafter(strbefore(str(?_Category), "."), "=") as ?Category) .
+   BIND(str(?_PRO_short_label) as ?PRO_short_label) .
+   BIND(str(?_PRO_proteoform_std) as ?PRO_proteoform_std)
+}
+ORDER BY ASC(?_PRO_short_label)

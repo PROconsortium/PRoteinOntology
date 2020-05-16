@@ -1,0 +1,144 @@
+########### 
+# FQ4. Federated Query: for proteins in ProKinO, count the number of homologs and modifications in PRO. 
+#     (Liang-Chin Huang et al.) 
+########### 
+ 
+PREFIX prokino: <http://prokino.uga.edu/prokino#>  
+PREFIX prokino.rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+PREFIX pro.rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+PREFIX nextprot: <http://nextprot.org/rdf#>  
+PREFIX mgi: <http://bio2rdf.org/mgi_vocabulary:>  
+PREFIX mgi.go: <http://bio2rdf.org/goa_vocabulary:>  
+PREFIX mgi.affy: <http://bio2rdf.org/affymetrix_vocabulary:>  
+ 
+SELECT DISTINCT  
+(STR(?genename) AS ?Protein)  
+(STR(?uniprotid) AS ?UniProt_ID)  
+(STR(?pro_gene_id) AS ?PRO_Gene_ID)  
+(STR(?organismgenecount) AS ?Homologs_Count ) 
+(STR(?organismmodificationcount) AS ?Modification_Count)  
+FROM NAMED <http://prokino.uga.edu>  
+FROM NAMED <http://purl.obolibrary.org/obo/pr>  
+WHERE  
+{  
+	#SPARQL Endpoint: PRO  
+	SERVICE <http://sparql.proconsortium.org/virtuoso/sparql>  
+	{  
+	    GRAPH <http://purl.obolibrary.org/obo/pr>  
+	    {  
+			SELECT DISTINCT  
+				?genename  
+				?uniprotid  
+				#Replace "http://purl.obolibrary.org/obo/PR_XXXXXXXXX" with "PR:XXXXXXXXX" for PRO's ID  
+      				(REPLACE(STRAFTER(STR(?pro_gene),"/obo/"),"_",":") AS ?pro_gene_id)  
+				?organismgenecount  
+				?organismmodificationcount  
+			WHERE  
+			{  
+				#Define protein kinases by ProKinO and use UniProt ID (accession number) as backbone  
+				{  
+					SELECT DISTINCT  
+						?genename  
+						?uniprotid  
+						#Use PRO term (organism-gene) to connect the data obtained from PRO  
+						?pro_organism_gene  
+					WHERE  
+					{  
+						#SPARQL Endpoint: ProKinO  
+						SERVICE <http://vulcan.cs.uga.edu/sparql>  
+						{  
+					    		GRAPH <http://prokino.uga.edu>  
+                            				{  
+								SELECT DISTINCT  
+									?genename  
+									?uniprotid  
+									#Add a prefix to a UniProt ID and let it be the organism gene ID in PRO  
+                							(CONCAT("http://purl.obolibrary.org/obo/PR_",STR(?uniprotid)) AS ?pro_organism_gene)  
+								WHERE 
+								{  
+									#Get human protein kinases  
+									?gene prokino.rdf:type prokino:Protein .  
+									?gene prokino:presentIn prokino:Human .  
+									?gene prokino:hasPrimaryName ?genename .  
+									?gene prokino:hasDbXref ?protid .  
+  
+									#Get primary UniProt ID  
+									?protid prokino:isPrimaryUniprotId ?isprimaryuniprotid .  
+									?protid prokino:hasIdentifier ?uniprotid .  
+									#A protein also has secondary accession numbers, so it needs to be filtered  
+									FILTER REGEX(?isprimaryuniprotid,"true")  
+								}  
+                           				}  
+						}  
+					}  
+				}  
+				#Appending Information: PRO  
+				OPTIONAL  
+				{  
+					#Only going up to gene level can we obtain the number of homologs  
+					#Use PRO term (gene) to connect the data obtained from PRO  
+					{  
+						SELECT DISTINCT  
+							?pro_organism_gene  
+							?pro_gene  
+						WHERE  
+						{  
+							?pro_organism_gene pro.rdfs:comment ?category .  
+							?pro_organism_gene pro.rdfs:subClassOf ?pro_gene .  
+ 
+							?pro_gene pro.rdfs:comment ?parentcategory .  
+							FILTER REGEX(?parentcategory,"Category=gene")  
+						}  
+					}  
+					#Calculate PRO organism-gene  
+					OPTIONAL  
+					{  
+						SELECT DISTINCT  
+							?pro_gene  
+            						(Count(*) AS ?organismgenecount)  
+						WHERE  
+						{  
+							SELECT DISTINCT  
+								?pro_organism_gene  
+								?pro_gene  
+							WHERE  
+							{  
+								?pro_organism_gene pro.rdfs:comment ?category .  
+								FILTER (regex(?category,"Category=organism-gene"))  
+ 
+								?pro_organism_gene pro.rdfs:subClassOf ?pro_gene .  
+								?pro_gene pro.rdfs:comment ?parentcategory .  
+								FILTER (regex(?parentcategory,"Category=gene"))  
+							}  
+						}  
+						GROUP BY ?pro_gene  
+					}  
+					#Calculate PRO organism-modification  
+					OPTIONAL  
+					{  
+						SELECT DISTINCT  
+							?pro_gene  
+            						(COUNT(*) AS ?organismmodificationcount)  
+						WHERE  
+						{  
+							SELECT DISTINCT  
+								?pro_organism_modification  
+								?pro_gene  
+							WHERE  
+							{  
+								?pro_organism_modification pro.rdfs:comment ?category .  
+								FILTER REGEX(?category,"Category=organism-modification")  
+ 
+								?pro_organism_modification pro.rdfs:subClassOf+ ?pro_gene .  
+								?pro_gene pro.rdfs:comment ?parentcategory .  
+								FILTER REGEX(?parentcategory,"Category=gene")  
+							}  
+						}  
+						GROUP BY ?pro_gene  
+					}  
+				}  
+		 	}  
+	    	}  
+	}  
+}  
+ORDER BY ?genename  

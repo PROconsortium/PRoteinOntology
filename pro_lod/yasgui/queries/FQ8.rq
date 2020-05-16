@@ -1,0 +1,83 @@
+########### 
+# FQ8. Find variants in UniProt or DisGeNET for AlzForum PRO terms.
+########### 
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX ud: <http://purl.uniprot.org/database/>
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sio: <http://semanticscience.org/resource/>
+PREFIX ncit: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#>
+PREFIX dcterms:  <http://purl.org/dc/terms/>
+PREFIX so: <http://purl.obolibrary.org/obo/SO_>
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT
+?PRO 
+    (?PRO_Label AS ?Name)
+    (STRAFTER(STRBEFORE(STR(?PRO_Category), "."), "=") AS ?Category) 
+    (STRBEFORE(STRAFTER(STR(?PRO_Category), "."), ".") AS ?Comment) 
+    (?protein AS ?UniProt) 
+    (?uniprotvar AS ?UniProt_Var)
+    (?variant AS ?DisGeNET_Var)
+    (STR(?variantTitle) AS ?RS_ID)
+    (STR(?vscore) AS ?VDAScore)
+    (?disease AS ?Disease)
+    (STR(?diseaselabel) AS ?DiseaseName)
+    (?gene AS ?Gene)
+    (STR(?gSymbol) AS ?GeneSymbol)
+    (STR(?geneTitle) AS ?GeneName)
+WHERE {
+    {
+      SELECT ?PRO ?Parent ?PRO_Label ?PRO_Category ?uniprotvar 
+      WHERE {
+            VALUES ?PRO { obo:PR_000037702 obo:PR_000037753 }
+            #?PRO rdfs:subClassOf ?Parent.
+            ?PRO rdfs:seeAlso ?uniprotvar .
+            ?PRO rdfs:label ?PRO_Label .
+            ?PRO rdfs:comment ?PRO_Category .
+            FILTER(CONTAINS(LCASE(?PRO_Category), "by=alzforum"))
+            FILTER(CONTAINS(LCASE(STR(?uniprotvar)), "annotation"))
+      }
+    }
+    SERVICE <http://sparql.uniprot.org/sparql> 
+    {
+        ?uniprotvar
+        a up:Natural_Variant_Annotation ;
+        rdfs:seeAlso ?_rs ;
+        skos:related ?up_disease .
+          ?up_disease
+          a up:Disease ;
+          rdfs:comment ?up_disease_comment .
+        FILTER(CONTAINS(LCASE(?up_disease_comment), "alzheimer"))
+      
+      []
+        rdf:object ?uniprotvar ;
+        rdf:predicate up:annotation ;
+        rdf:subject ?protein ;
+        a rdf:Statement .
+        BIND(IRI(REPLACE(STR(?_rs), "purl.uniprot.org", "identifiers.org")) AS ?variant)
+    }
+    
+    SERVICE <http://rdf.disgenet.org/sparql/> 
+    {
+      OPTIONAL {
+          ?vda sio:SIO_000628 ?variant, ?disease;
+              sio:SIO_000216 ?vscoreIRI . 
+          ?vscoreIRI sio:SIO_000300 ?vscore .
+          ?variant dcterms:title ?variantTitle .
+          ?disease rdfs:label ?diseaselabel . 
+          ?disease dcterms:title ?diseaseTitle .
+          FILTER(CONTAINS(LCASE(?diseaseTitle), "alzheimer"))
+          OPTIONAL {
+            ?variant so:associated_with ?gene .
+            ?gene a ncit:C16612 .
+            ?gene dcterms:title ?geneTitle .
+            ?gene sio:SIO_000205 ?symbolUri .
+          ?symbolUri dcterms:title ?gSymbol .
+          }
+      }
+    }
+} ORDER BY DESC(?vscore)

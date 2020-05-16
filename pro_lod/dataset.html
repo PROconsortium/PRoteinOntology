@@ -1,0 +1,1011 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Protein Ontology Linked Open Data - Dataset Description</title>
+	<link href="https://proconsortium.org/styles.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="js/pro_lod.js"></script>
+</head>
+
+<body>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%"">
+		<tr>
+			<td width=" 100%">
+		<table  cellSpacing="0" cellPadding="0" width="100%" background="images/bannerBg.png" border="0">
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap><img src="images/empty_line.GIF" width="1"
+						height="3"></td>
+			</tr>
+			<tr>
+				<td><img src="images/empty_line.GIF" width="8" height="76"></td>
+				<td align=center>
+					<img src="images/empty_line.GIF" width="1" height="3"><br />
+					<img src="images/empty_line.GIF" width="3" height="1">
+					<a href="https://proconsortium.org/pro.shtml">
+						<img alt="back to PRO homepage" src="images/PROlogofinalEDGclear.png" width="140" heightxx="42"
+							border="0">
+					</a>
+					<img src="images/empty_line.GIF" width="3" height="1"><br />
+					<img src="images/empty_line.GIF" width="1" height="2">
+				</td>
+				<td width="80%">
+					<table border="0" cellPadding="0" cellSpacing="0" class="PRO_banner1">
+						<tr>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+							<td><img src="images/hm.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro.shtml"
+									class="ProMenu">Home</a></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/browse.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_browse.shtml"
+									class="ProMenu">Browse</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/search.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_search.shtml"
+									class="ProMenu">Search</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sparql.png" width="18">&nbsp;</td>
+							<!-- <td align="center" nowrap><a href="https://proconsortium.org/pro_shtml"
+									class="ProMenu" style="color:#FF9933;">SPARQL</a> </td>
+							<td></td> -->
+							<td align="center" nowrap><a href="index.html"
+								class="ProMenu" style="color:#FF9933;">LOD</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sta.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/cgi-bin/sta_pro"
+									class="ProMenu">Statistics</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/download.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_download.shtml"
+									class="ProMenu">Download</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+
+				<td align="center">
+					<table border="0" cellPadding="3" cellSpacing="3" class="nrm02">
+						<tr>
+							<form name="prosearch" method="get"
+								action="https://proconsortium.org/cgi-bin/textsearch_pro">
+								<td nowrap>
+									<input type="text" name="query0" size="30" class="nrm11"
+										placeholder="PR:000025934, smad">
+								</td>
+								<td><input type="image" name="search" src="images/searchWhite.png">
+									<input type="hidden" name="field0" value="ALLFLDS">
+								</td>
+								<td><img src="images/empty_line.GIF" width="4">
+								</td>
+							</form>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor="#EEEEEE"><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td>
+					<table border="0" cellPadding="3" cellSpacing=3 class=PRO_banner2>
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/cgi-bin/race_pro">RACE-PRO</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="http://purl.obolibrary.org/obo/pr/tracker"
+									target=_b>PRO tracker</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://pir17.georgetown.edu/confluence/display/PROWIKI/Home"
+									target=_b>Wiki</a></TD>
+							<td><img src="images/empty_line.GIF" width="5"></td>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor=#EEEEEE><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td align=right>
+					<table border="0" cellPadding="3" cellSpacing="3" class="PRO_banner2">
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_cst.shtml">PRO Consortium</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_pub.shtml">Publications</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_dcmtt.shtml">Documentation</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap>
+					<img src="images/empty_line.GIF" width="1" height="3"></td>
+			</tr>
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+		</table> 
+
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%" class="nrm04">
+						<tbody>
+							<tr>
+								<td align="center" class="text-primary">
+									<h3><b>Protein Ontology Linked Open Data</b></h3>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="padding: 1em 2em 0em 2em ; margin: 5em 5em 5em 5em auto;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" class="nrm04">
+							<tbody>
+								<tr>
+									<td>
+										<nav class="navbar navbar-expand-sm navbar-dark">
+											<!-- Links -->
+											<ul class="navbar-nav">
+												<li class="nav-item">
+													<a class="nav-link" href="index.html">Introduction</a>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">RDF Model
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="rdf.html#uri">PRO Uniform Resource Identifiers (URIs)</a>
+														<a class="dropdown-item" href="rdf.html#pro_cat">Types of PRO Terms</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link active dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Dataset Description
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="dataset.html#void">VoID</a>
+														<a class="dropdown-item" href="dataset.html#linkset">Linked Dataset</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Data Access
+													</a>
+													<div class="dropdown-menu">
+															<a class="dropdown-item" href="release.html">Data
+																	Dumps</a>
+														<a class="dropdown-item"
+															href="https://sparql.proconsortium.org/virtuoso/fct/">Faceted Browser</a>
+														
+														<a class="dropdown-item"
+															href="api.html">RESTful
+															APIs</a>
+															<a class="dropdown-item" href="yasgui.html">SPARQL
+																GUI</a>
+													</div>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="fair.html">FAIRness</a>
+												</li>
+											</ul>
+										</nav>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<article id="pro_lod">
+							<div style="margin: 2em 2em 2em 2em;">
+									<div class="article_title">PRO Dataset Description<br></div>
+										<br>
+										<div id="toTop" style="display: block;">Back to Top</div>
+								<div class="all-sections"></div>
+									<div id="toTop">Back to Top</div>
+									<br>
+									<a name="void"></a>
+									<h3 id="void">VoID</h3>
+									<p>High-quality consistent metadata description is essential to the successful
+										discovery, exchange, and query
+										of a Linked Dataset. The Protein Ontology Linked Dataset is accompanied with a
+										full
+										<a href="http://www.w3.org/TR/void/">VoID</a> metadata description, which is
+										compliant with the
+										<a href="http://www.w3.org/TR/2015/NOTE-hcls-dataset-20150514/">W3C HCLS
+											specification</a>. The full VoID description is at
+										<a href="releases/latest/void.ttl">void.ttl</a>. </p>
+
+									<h4 id="summary_level">Summary Level Description</h4>
+									<p>This level provides a description of a dataset that is independent of a specific
+										version or format.</p>
+									<ul>
+										<li>
+											<p>
+												<b>Prefix</b>
+											</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+@prefix : &lt;#&gt; .
+@prefix void: &lt;http://rdfs.org/ns/void#&gt; .                        # Describing Linked Datasets with the VoID Vocabulary
+@prefix void-ext: &lt;http://ldf.fi/void-ext#&gt; .                     # Extensions to the Vocabulary of Interlinked Datasets (VoID)
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .      # RDF Syntax
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .           # RDF Schema
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .                   # OWL ontology
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .                # XML Schema
+@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .                    # Dublin Core Metadata Terms
+@prefix dctypes: &lt;http://purl.org/dc/dcmitype/&gt; .                 # Dublin Core Metadata Types
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .                      # Friend-of-a-Friend
+@prefix cito: &lt;http://purl.org/spar/cito/&gt; .                      # Citation Typing Ontology
+@prefix dcat: &lt;http://www.w3.org/ns/dcat#&gt; .                      # Data Catalog
+@prefix freq: &lt;http://purl.org/cld/freq/&gt; .                       # Collection Description Frequency Vocabulary
+@prefix idot: &lt;http://identifiers.org/idot/&gt; .                    # Identifiers.org vocabulary
+@prefix lexvo: &lt;http://lexvo.org/ontology#&gt; .                     # Lexical Vocabulary
+@prefix pav: &lt;http://purl.org/pav/&gt; .                             # Provenance Authoring and Versioning ontology
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .                      # PROV Ontology
+@prefix schemaorg: &lt;http://schema.org/&gt;  .                        # schema.org vocabulary
+@prefix sd: &lt;http://www.w3.org/ns/sparql-service-description#&gt; .  # SPARQL 1.1 Service Description
+@prefix sio: &lt;http://semanticscience.org/resource/&gt; .             # Semanticscience Integrated Ontology (SIO)	</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Dataset Identification and Declaration of Type</b>
+											</p>
+											<p>All summary and version level descriptions are typed as
+												"dctypes:Dataset". The distribution level description
+												can also be typed as "dctypes:Dataset" but needs to be additionally
+												typed as a "dcat:Distribution". RDF
+												formatted datasets are typed as an instance of a "void:Dataset".</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+															<pre>
+:pro
+    rdf:type dctypes:Dataset .</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Title</b>
+											</p>
+											<p>The "dct:title" defines a human-readable title for the dataset.
+												Alternative or older titles can be specified
+												using "dct:alternative".</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    dct:title "PRO"@en ; 
+    dct:alternative "Protein Ontology"@en . 
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Description</b>
+												<br>
+											</p>
+											<p>The "dct:description" describes the contents of the dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    dct:description """PRO describes the relationships of proteins and protein evolutionary classes, delineates the multiple protein forms of a gene locus (ontology for protein forms), protein complexes, and interconnects existing ontologies. Further information is available at http://www.proteininformationresource.org/pro/."""@en .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+
+										<li>
+											<p>
+												<b>Publisher</b>
+												<br>
+											</p>
+											<p>The "dct:publisher" states the person, organisation, or service that is
+												responsible for publishing the dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    dct:publisher [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Change Frequency</b>
+												<br>
+											</p>
+											<p>The "dct:accrualPeriodicity" from the Dublin Core Frequency vocabulary (
+												<a href="http://dublincore.org/groups/collections/frequency">DCFreq</a>)
+												specifies the update frequency of the dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    dct:accrualPeriodicity freq:quarterly .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Webpage and Logo</b>
+												<br>
+											</p>
+											<p>The "foaf:page" states a link to human-readable web page.
+												"schemaorg:logo" states a link to an images file
+												containing the logo for the dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    foaf:page &lt;https://proconsortium.org/&gt; ;
+    schemaorg:logo &lt;https://proconsortium.org/PROlogofinalEDGclear.png&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Keywords</b>
+												<br>
+											</p>
+											<p>The "dcat:keyword" provides the keywords and topics of coverage for the
+												dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    dcat:keyword "Biomedical ontology"^^xsd:string, "Protein ontology"^^xsd:string, "Community annotation"^^xsd:string, "Protein"^^xsd:string .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Licensing and Rights</b>
+												<br>
+											</p>
+											<p>The "dct:license" states the license under which the dataset is
+												published.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    dct:license &lt;https://creativecommons.org/licenses/by/4.0/&gt; ;
+    dct:rights """The PRotein Ontology is licensed under CC BY 4.0. You are free to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon the material) for any purpose, even commercially. You must give appropriate credit (by using the original ontology IRI for the whole ontology or original term IRIs for individual terms), provide a link to the license, and indicate if any changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.""" .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Language</b>
+												<br>
+											</p>
+											<p>The "dct:language" declares the languages in which the dataset is published.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    dct:language &lt;http://lexvo.org/id/iso639-3/eng&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>References</b>
+												<br>
+											</p>
+											<p>The "cito:citesAsAuthority" from the Citation Typing Ontology (<a href="http://purl.org/spar/cito">CiTO</a>) links to publications
+												about the dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    cito:citesAsAuthority &lt;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210558/&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+
+
+
+										<li>
+											<p>
+												<b>Preferred and Alternative Prefixes</b>
+												<br>
+											</p>
+											<p>The "idot:preferredPrefix" specifies the short names for the dataset. The
+												"idot:alternatePrefix" specifies
+												the alternate short names for the dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    idot:preferredPrefix "pro" ;
+    idot:alternatePrefix "prodb" .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+
+									</ul>
+									<h4 id="version_level">Version Level Description</h4>
+									<p>This level captures version-specific characteristics of a dataset.</p>
+									<ul>
+										<li>
+											<p>
+												<b>Versioning</b>
+												<br>
+											</p>
+											<p>The "dct:isVersionOf" relates the version level description to the summary
+												level description.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0
+    dct:isVersionOf :pro .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+											<p>The "pav:version" declares the version identifier.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0
+    pav:version "60_0"^^xsd:string .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+											<p>The "pav:previousVersion" links to the previous version of the dataset.
+											</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0
+    pav:previousVersion :pro59_0 .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+											<p>The "pav:hasCurrentVersion" declares the current version of the dataset.
+											</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro
+    pav:hasCurrentVersion :pro60_0 .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+
+										<li>
+											<p>
+												<b>Dates of Creation and Issuance</b>
+												<br>
+											</p>
+											<p>The "dct:created" states the date the dataset was generated. "dct:issued"
+												states the date the dataset was
+												made public.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0
+    dct:created "2020-04-22"^^xsd:date ;
+    dct:issued "2020-04-22"^^xsd:date .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Authorship, Creation, Curation</b>
+												<br>
+											</p>
+											<p>The "dct:creator" states the individual or organization responsible for
+												creating the dataset. The value should
+												be an IRI that can be resolved for more information. PAV ontology can be
+												used to define fine-grained attribution
+												of a creation event. For example, "pav:authoredBy" states the URIs of the
+												authors. "pav:authoredOn" states
+												the date of authorship. "pav:createdBy" states the URIs of the creators.
+												"pav:createdOn" states the date
+												of creation. "pav:curatedBy" states the URIs of the curators.
+												"pav:curatedOn" states the date of curation.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0
+    dct:creator [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+    pav:authoredBy [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+    pav:authoredOn"2020-04-22"^^xsd:date ;
+    pav:createdBy [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+    pav:createdOn"2020-04-22"^^xsd:date ;
+    pav:curatedBy [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+    pav:curatedOn"2020-04-22"^^xsd:date . 
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+									</ul>
+									<h4 id="distribution_level">Distribution Level Description</h4>
+									<p>This level captures metadata about a specific form and version of a dataset.</p>
+									<ul>
+										<li>
+											<p>
+												<b>Distributions and Formats</b>
+												<br>
+											</p>
+											<p>Version level description should link to the distribution level
+												descriptions that represent the files in
+												different formats.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0
+    dcat:distribution :pro60_0rdf .
+
+:pro60_0rdf
+    a dctypes:Dataset, dcat:Distribution, void:Dataset ;
+    dct:format "application/rdf+xml" ;
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Vocabularies</b>
+												<br>
+											</p>
+											<p>The "void:vocabulary" from
+												<a href="https://www.w3.org/TR/void/">VoID</a> describes the RDFS
+												vocabularies or OWL ontologies that represent the data.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0rdf
+    void:vocabulary &lt;http://www.w3.org/ns/dcat#&gt;, &lt;http://purl.org/dc/terms/&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Conformance</b>
+												<br>
+											</p>
+											<p>The "dct:conformsTo" indicates a particular format or standard the
+												dataset conforms to.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:pro60_0rdf
+    dct:conformsTo &lt;http://www.w3.org/2001/sw/hcls/notes/hcls-dataset/&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Subsets</b>
+												<br>
+											</p>
+											<p>The "dct:hasPart" indicates the parts of dataset.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre>
+:prolod60_0rdf
+    dct:hasPart :pro60_0rdf dct:hasPart :paf60_0rdf ;
+    void:subset :pro60_0rdf, :paf60_0rdf
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>File Locations</b>
+												<br>
+											</p>
+											<p>The "dcat:downloadURL" declares the distribution file. The
+												"dcat:byteSize" declares the size of the distribution
+												file. For RDF resources, the "void:dataDump" declares the distribution
+												file. The "dcat:accessURL" specifies
+												a directory containing the files of interest.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+<pre># Summary level declaration
+:pro
+    dcat:accessURL &lt;https://lod.proconsortium.org/releases/latest/&gt; .
+
+# Version level declaration 
+:pro60_0
+    dcat:accessURL &lt;https://lod.proconsortium.org/releases/release_60.0/&gt; ;
+    dcat:downloadURL &lt;https://lod.proconsortium.org/releases/release_60.0/pro.owl/&gt; ;
+    dcat:landingPage &lt;https://lod.proconsortium.org/release.html/&gt; .
+
+# Distribution level declaration
+:pro60_0rdf
+    dcat:accessURL &lt;https://lod.proconsortium.org/releases/release_60.0/&gt; ;
+    dcat:downloadURL &lt;https://lod.proconsortium.org/releases/release_60.0/pro.owl&gt; ;
+    void:dataDump &lt;https://lod.proconsortium.org/releases/release_60.0/pro.owl&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>SPARQL Query Endpoint</b>
+												<br>
+											</p>
+											<p>The "void:sparqlEndpoint" specifies a SPARQL endpoint at the summary
+												level.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+														<pre>
+:pro
+    void:sparqlEndpoint &lt;https://sparql.proconsortium.org/virtuoso/sparql&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Dataset Documentation</b>
+												<br>
+											</p>
+											<p>The documentation for the dataset is made available by using the
+												"dcat:landingPage".</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+															<pre>
+:prolod60_0
+    dcat:landingPage &lt;https://lod.proconsortium.org/dataset.html&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+
+										<li>
+											<p>
+												<b>Identifier, Resource, and Access Patterns</b>
+												<br>
+											</p>
+											<p>The "idot:identifierPatthern" identifies items or records in the dataset
+												using a regular expression pattern
+												for distribution level description.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+															<pre>
+:pro60_0rdf
+    idot:identifierPattern "PR_\\d+"^^xsd:string .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+											<p>The "void:uriRegexPattern" denotes a superset of data item URIs in the
+												dataset using a regular expression
+												pattern for distribution level description.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+															<pre>
+:pro60_0rdf
+    void:uriRegexPattern "http://purl.obolibrary.org/obo/PR_\\d+" .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+										<li>
+											<p>
+												<b>Example Identifier and Resource</b>
+												<br>
+											</p>
+											<p>The "idot:exampleIdentifier" provides an example identifier for
+												distribution level descriptions.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+															<pre>
+:pro60_0
+    idot:exampleIdentifier "PR_000000002"^^xsd:string .	
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+											<p>The "void:exampleResource" provides an example resource for distribution
+												level descriptions.</p>
+											<table
+												style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+												<tbody>
+													<tr>
+														<td>
+															<pre>
+:pro60_0rdf
+    void:exampleResource &lt;https://sparql.proconsortium.org/virtuoso/describe/?uri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000000002&gt; .
+</pre>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<br>
+										</li>
+
+									</ul>
+									<br />
+									<a name="linksets"></a>
+									<h3 id="linkset">Linked Dataset</h3>
+									<p>Linksets are a way of identifying the content that links instances in one dataset
+										with instances in another dataset.
+										A separate linkset is created for each link predicate relating a particular pair
+										of datasets.
+										A linkset should be declared to be a subset of the dataset which publishes it.
+										The linkset itself MUST be declared to be of type void:Linkset and provide the
+										same metadata as an RDF Distribution.
+										There are some metadata properties specific for a linkset. These are stating the
+										source and target of each link, i.e. the datasets that are linked and the
+										predicate used in the links.
+										The statistics relevant for a linkset are the number of triples it contains.
+										This can be reported using the void:triples property.</p>
+									<h4 id="pro-uniprot-linkset">PRO-UniProt Linkset</h4>
+									<table
+										style="border: 1px dashed navy; width: 100%; text-align: left; background-color: #F8F8F8; border-collapse:collapse;">
+										<tbody>
+											<tr>
+												<td>
+													<pre>
+:pro60_0-uniprotkb-exactMatch-linkset
+#Linkset specific Metadata
+	a void:Linkset ;
+	void:subjectsTarget :pro60_0;
+	void:objectsTarget &lt;http://purl.uniprot.org/void#UniProtDataset_2019_11&gt; ;
+	void:linkPredicate skos:exactMatch ;
+#Metadata for a RDF distribution
+	a dctypes:Dataset, dcat:Distribution, void:Dataset ;
+	dcterms:format "text/turtle" ;
+	dcterms:title "PRO Version 60_0 to UniProtKB ExactMatch Linkset"@en ;
+	dcterms:description """A linkset connecting PRO Version 50_0 to UniProtKB with skos:exactMatch linkPredicate"""@en ;
+	dcterms:created "2020-04-22"^^xsd:date ;
+	dcterms:issued "2020-04-22"^^xsd:date ;
+	dcterms:creator [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+	pav:authoredBy [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+	pav:authoredOn"2020-04-22"^^xsd:date ;
+	pav:createdBy [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+	pav:createdOn"2020-04-22"^^xsd:date ;
+	pav:curatedBy [ foaf:page &lt;https://proconsortium.org/pro_cst.shtml&gt; ] ;
+	pav:curatedOn"2020-04-22"^^xsd:date ; 
+	dcterms:license &lt;https://creativecommons.org/licenses/by/4.0/&gt; ;
+	dcterms:rights """The PRotein Ontology is licensed under CC BY 4.0. You are free to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon the material) for any purpose, even commercially. You must give appropriate credit (by using the original ontology IRI for the whole ontology or original term IRIs for individual terms), provide a link to the license, and indicate if any changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.""" ;
+	dcterms:language &lt;http://lexvo.org/id/iso639-3/eng&gt; ;
+	void:vocabulary &lt;http://www.w3.org/ns/dcat#&gt;, &lt;http://purl.org/dc/terms/&gt; ;
+	dcterms:conformsTo &lt;http://www.w3.org/2001/sw/hcls/notes/hcls-dataset/&gt; ;
+#Identifiers
+	idot:identifierPattern "PR_\\w"^^xsd:string ;
+	void:uriRegexPattern "http://purl.obolibrary.org/obo/PR_\\w" ;
+	idot:accessIdentifierPattern  "https://sparql.proconsortium.org/virtuoso/describe/?url=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_\\w" ;
+	idot:exampleIdentifier "PR_Q96PN6"^^xsd:string ;
+#Provenance and Change
+	pav:version "60_0"^^xsd:string ;
+	pav:previousVersion :pro59_0-uniprotkb-exactMatch-linkset ;
+	dcterms:isVersionOf :pro-uniprotkb-exactMatch-linkset ;
+#Availability/Distributions
+	dcat:distribution :paf60_0rdf-uniprotkb-exactMatch-linkset ;
+	dcat:downloadURL &lt;https://lod.proconsortium.org/releases/release_60.0/pro-uniprotkb-exactMatch-linkset.ttl&gt; ;
+	dcat:landingPage &lt;https://lod.proconsortium.org/release.html&gt; ;
+	void:sparqlEndpoint &lt;https://sparql.proconsortium.org/virtuoso/sparql&gt; .
+</pre>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<br>
+								</div>
+							</div>
+						</article>
+					</div>
+					</div>
+					</td>
+					</tr>
+					</table>
+</body>
+
+</html>

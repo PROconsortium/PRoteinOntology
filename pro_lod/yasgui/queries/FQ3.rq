@@ -1,0 +1,39 @@
+########### 
+# FQ2. get all PRO human  genes whose uniprot counterpart has variants 
+#     with gain of function implicated in disease.
+########### 
+ 
+PREFIX obo: <http://www.geneontology.org/formats/oboInOwl#>
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX ud: <http://purl.uniprot.org/database/>
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX faldo: <http://biohackathon.org/resource/faldo#>
+
+SELECT DISTINCT 
+    ?PRO_term 
+    (STR(?_PRO_label) AS ?PRO_label)
+    (STRAFTER(STRBEFORE(STR(?_PRO_category), "."), "=") AS ?PRO_category)
+    ?Protein
+    ?Variant
+    (STR(?_Text) AS ?Description)
+WHERE
+{
+    SERVICE <http://sparql.uniprot.org/sparql>
+    {
+        ?Protein rdfs:seeAlso ?PRO_term .
+        ?PRO_term 
+            up:database ud:PRO ;
+    	    a up:Resource .
+        ?Protein a up:Protein .
+        ?Protein up:organism taxon:9606 .
+        ?Protein up:annotation ?Variant .
+        ?Variant a up:Natural_Variant_Annotation .
+        ?Variant rdfs:comment ?_Text .
+        FILTER (CONTAINS(?_Text, 'gain of function'))
+    }
+    ?PRO_term rdfs:label ?_PRO_label .
+    ?PRO_term rdfs:comment ?_PRO_category .
+}

@@ -1,0 +1,16 @@
+########### 
+# PQ5. Retrieve all phospho-proteoforms and their acting kinases.
+########### 
+ 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?PRO_term ?PRO_name ?Kinase
+FROM <http://purl.obolibrary.org/obo/pr>
+WHERE
+{
+    ?PRO_term rdfs:label ?_PRO_name .
+    ?PRO_term rdfs:comment ?_Kinase .
+    FILTER (regex(?_Kinase,"Kinase="))
+    BIND(str(?_PRO_name) as ?PRO_name) .
+    BIND(strbefore(strafter(str(?_Kinase), "Kinase="), ".") as ?Kinase) .
+}

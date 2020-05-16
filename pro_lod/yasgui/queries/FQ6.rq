@@ -1,0 +1,179 @@
+########### 
+# FQ6. Federated Query: for proteins 'EGFR' 'PKCB' 'PKCT' in ProKinO, get their proteoforms 
+#	 with molecular functions from PRO. 
+#     (Liang-Chin Huang et al.) 
+########### 
+ 
+PREFIX prokino: <http://prokino.uga.edu/prokino#>
+PREFIX prokino.rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+PREFIX pro.oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>  
+PREFIX pro.owl: <http://www.w3.org/2002/07/owl#>  
+PREFIX pro.paf: <http://pir.georgetown.edu/pro/paf#>  
+PREFIX pro.pr: <http://purl.obolibrary.org/obo/pr#>  
+PREFIX pro.rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+PREFIX pro.rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+PREFIX nextprot: <http://nextprot.org/rdf#>  
+PREFIX nextprot.db: <http://nextprot.org/rdf/db/>  
+PREFIX nextprot.rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+PREFIX mgi: <http://bio2rdf.org/mgi_vocabulary:>  
+PREFIX mgi.affy: <http://bio2rdf.org/affymetrix_vocabulary:>  
+PREFIX mgi.dcterms: <http://purl.org/dc/terms/>  
+PREFIX mgi.go: <http://bio2rdf.org/goa_vocabulary:>  
+PREFIX mgi.owl: <http://www.w3.org/2002/07/owl#>  
+PREFIX mgi.rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+ 
+SELECT DISTINCT  
+(STR(?genename) AS ?Protein)  
+(STR(?uniprotid) AS ?UniProt_ID)  
+(REPLACE(STRAFTER(STR(?pro_organism_gene),"/obo/"),"_",":") AS ?PRO_Organism_Gene)  
+(REPLACE(STRAFTER(STR(?pro_gene),"/obo/"),"_",":") AS ?PRO_Gene)  
+(REPLACE(STRAFTER(STR(?pro_organism_modification),"/obo/"),"_",":") AS ?Modification)  
+(STR(?modifier) AS ?Modifier)  
+(STR(?relation) AS ?Relation)  
+(STR(?ontology_id) AS ?Ontology_ID)  
+(STR(?ontology_term) AS ?Ontology_Term) 
+(REPLACE(STRAFTER(STR(?relativeto),"/obo/"),"_",":") AS ?Relative_To)  
+(REPLACE(STRAFTER(STR(?interactionwith),"/obo/"),"_",":") AS ?Interaction_With)
+(GROUP_CONCAT(?evidence;separator=", ") AS ?Evidence)
+  
+FROM NAMED <http://prokino.uga.edu>  
+FROM NAMED <http://purl.obolibrary.org/obo/pr>  
+FROM NAMED <http://pir.georgetown.edu/pro/paf>  
+WHERE  
+{  
+  #SPARQL Endpoint: PRO  
+  SERVICE <http://sparql.proconsortium.org/virtuoso/sparql>  
+  {  
+	    SELECT DISTINCT  
+	    ?genename  
+	    ?uniprotid  
+	    ?pro_organism_gene  
+	    ?pro_gene  
+	    ?pro_organism_modification  
+	    ?modifier  
+	    ?relation  
+	    ?ontology_id  
+	    ?ontology_term  
+	    ?relativeto  
+	    ?interactionwith  
+	    ?evidence  
+    WHERE  
+    {  
+      #Define protein kinases by ProKinO and use UniProt ID (accession number) as backbone  
+      {  
+        SELECT DISTINCT  
+	        ?genename  
+	        ?uniprotid  
+	        ?pro_organism_gene  
+        WHERE  
+        {  
+          SERVICE <http://vulcan.cs.uga.edu/sparql>  
+          {  
+            GRAPH <http://prokino.uga.edu>  
+            {  
+              SELECT DISTINCT  
+	              ?genename  
+	              ?uniprotid  
+              	  (CONCAT("http://purl.obolibrary.org/obo/PR_",STR(?uniprotid)) AS ?pro_organism_gene)  
+              WHERE  
+              {  
+                #Define the genes of interest  
+                #In low level query, we only focus on some genes  
+                VALUES ?query_genes {'EGFR' 'PKCB' 'PKCT'}  
+                  
+                #Get human protein kinases  
+                ?gene prokino.rdf:type prokino:Protein .  
+                ?gene prokino:presentIn prokino:Human .  
+                ?gene prokino:hasPrimaryName ?genename .  
+                ?gene prokino:hasDbXref ?protid .  
+                FILTER(STR(?genename) = ?query_genes)  
+                  
+                #Get primary UniProt ID  
+                ?protid prokino:isPrimaryUniprotId ?isprimaryuniprotid .  
+                ?protid prokino:hasIdentifier ?uniprotid .  
+                FILTER REGEX(?isprimaryuniprotid,"true")  
+              }  
+            }  
+          }  
+        }  
+      }  
+      #Appending Information: PRO  
+      OPTIONAL  
+      {  
+        GRAPH <http://purl.obolibrary.org/obo/pr>  
+        {  
+          #Use PRO term (gene) to connect the data obtained from PRO  
+          {  
+            SELECT DISTINCT  
+	            ?pro_organism_gene  
+	            ?pro_gene  
+           WHERE  
+           {  
+             	?pro_organism_gene pro.rdfs:comment ?category .  
+             	?pro_organism_gene pro.rdfs:subClassOf ?pro_gene .  
+               
+             	?pro_gene pro.rdfs:comment ?parentcategory .  
+             	FILTER REGEX(?parentcategory,"Category=gene")  
+           }  
+         }  
+         #PRO function annotation, which is related to the organism-modification  
+         OPTIONAL  
+         {  
+           SELECT DISTINCT  
+	            ?pro_gene  
+	            ?pro_organism_modification  
+           WHERE  
+           {  
+             	?pro_organism_modification pro.rdfs:comment ?category .  
+             	FILTER REGEX(?category,"Category=organism-modification")  
+               
+             	?pro_organism_modification pro.rdfs:subClassOf+ ?pro_gene .  
+             	?pro_gene pro.rdfs:comment ?parentcategory .  
+             	FILTER REGEX(?parentcategory,"Category=gene")  
+           }  
+         }  
+           
+       }  
+       GRAPH <http://pir.georgetown.edu/pro/paf>   
+       {   
+         SELECT DISTINCT  
+	        	?pro_organism_modification  
+	        	?modifier  
+	        	?relation  
+	        	?ontology_id  
+	        	?ontology_term  
+	        	?relativeto  
+	        	?interactionwith  
+	        	?evidence  
+         WHERE   
+         {  
+           	#Function annotation  
+           	?stat a pro.rdf:Statement .  
+           	?stat pro.rdf:subject ?pro_organism_modification .  
+           	?stat pro.rdf:predicate ?stat_predicate .  
+           	?stat_predicate pro.paf:relation ?relation .  
+           	?stat pro.rdf:object ?stat_object .  
+           	?stat_object pro.paf:ontologyID ?ontology_id .  
+           	?stat_object pro.paf:ontologyTerm ?ontology_term .  
+           	?stat pro.paf:evidenceSource ?evidence .  
+             
+	            OPTIONAL  
+	            {  
+	              ?stat pro.paf:modifier ?modifier .  
+	            }  
+	            OPTIONAL  
+	            {  
+	              ?stat pro.paf:relativeTo ?relativeto .  
+	            }  
+	            OPTIONAL  
+	            {  
+	              ?stat pro.paf:interactionWith ?interactionwith .  
+	            }						  
+         }  
+       }  
+     }  
+   }  
+ }  
+}  
+GROUP BY ?genename ?uniprotid ?pro_organism_gene ?pro_gene ?pro_organism_modification ?modifier ?relation ?ontology_id  ?ontology_term ?relativeto ?interactionwith  
+ORDER BY ?genename ?ontology_term 

@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Protein Ontology Linked Open Data - Data Access</title>
+	<link href="https://proconsortium.org/styles.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+</head>
+
+<body>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%"">
+		<tr>
+			<td width=" 100%">
+		<table cellSpacing="0" cellPadding="0" width="100%" background="images/bannerBg.png" border="0">
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap><img src="images/empty_line.GIF" width="1"
+						height="3"></td>
+			</tr>
+			<tr>
+				<td><img src="images/empty_line.GIF" width="8" height="76"></td>
+				<td align=center>
+					<img src="images/empty_line.GIF" width="1" height="3"><br />
+					<img src="images/empty_line.GIF" width="3" height="1">
+					<a href="https://proconsortium.org/pro.shtml">
+						<img alt="back to PRO homepage" src="images/PROlogofinalEDGclear.png" width="140" heightxx="42"
+							border="0">
+					</a>
+					<img src="images/empty_line.GIF" width="3" height="1"><br />
+					<img src="images/empty_line.GIF" width="1" height="2">
+				</td>
+				<td width="80%">
+					<table border="0" cellPadding="0" cellSpacing="0" class="PRO_banner1">
+						<tr>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+							<td><img src="images/hm.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro.shtml"
+									class="ProMenu">Home</a></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/browse.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_browse.shtml"
+									class="ProMenu">Browse</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/search.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_search.shtml"
+									class="ProMenu">Search</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sparql.png" width="18">&nbsp;</td>
+							<!-- <td align="center" nowrap><a href="https://proconsortium.org/pro_sparql.shtml"
+									class="ProMenu">SPARQL</a> </td>
+							<td></td> -->
+							<td align="center" nowrap><a href="index.html"
+								class="ProMenu" style="color:#FF9933;">LOD</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sta.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/cgi-bin/sta_pro"
+									class="ProMenu">Statistics</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/download.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_download.shtml"
+									class="ProMenu">Download</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+
+				<td align="center">
+					<table border="0" cellPadding="3" cellSpacing="3" class="nrm02">
+						<tr>
+							<form name="prosearch" method="get"
+								action="https://proconsortium.org/cgi-bin/textsearch_pro">
+								<td nowrap>
+									<input type="text" name="query0" size="30" class="nrm11"
+										placeholder="PR:000025934, smad">
+								</td>
+								<td><input type="image" name="search" src="images/searchWhite.png">
+									<input type="hidden" name="field0" value="ALLFLDS">
+								</td>
+								<td><img src="images/empty_line.GIF" width="4">
+								</td>
+							</form>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor="#EEEEEE"><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td>
+					<table border="0" cellPadding="3" cellSpacing=3 class=PRO_banner2>
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/cgi-bin/race_pro">RACE-PRO</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="http://purl.obolibrary.org/obo/pr/tracker"
+									target=_b>PRO tracker</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://pir17.georgetown.edu/confluence/display/PROWIKI/Home"
+									target=_b>Wiki</a></TD>
+							<td><img src="images/empty_line.GIF" width="5"></td>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor=#EEEEEE><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td align=right>
+					<table border="0" cellPadding="3" cellSpacing="3" class="PRO_banner2">
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_cst.shtml">PRO Consortium</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_pub.shtml">Publications</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_dcmtt.shtml">Documentation</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap>
+					<img src="images/empty_line.GIF" width="1" height="3"></td>
+			</tr>
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+		</table>
+
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%" class="nrm04">
+						<tbody>
+							<tr>
+								<td align="center" class="text-primary">
+									<h4><b>Protein Ontology Linked Open Data</b></h4>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="padding: 2em 2em 0em 2em ; margin: 5em 5em 5em 5em auto;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" class="nrm04">
+							<tbody>
+								<tr>
+									<td>
+										<nav class="navbar navbar-expand-sm navbar-dark">
+											<!-- Links -->
+											<ul class="navbar-nav">
+												<li class="nav-item">
+													<a class="nav-link" href="index.html">Linked Open Data</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="rdf.html">RDF Model</a>
+												</li>
+
+												<li class="nav-item">
+													<a class="nav-link" href="dataset.html">Dataset Description</a>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Data Access
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item"
+															href="https://sparql.proconsortium.org/virtuoso/fct/">Faceted Browser</a>
+															<a class="dropdown-item" href="release.html">Data
+																	Dumps</a>
+														<a class="dropdown-item"
+															href="api.html">RESTful
+															APIs</a>
+															<a class="dropdown-item" href="yasgui.html">SPARQL
+																GUI</a>
+													</div>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="fair.html">FAIRness</a>
+												</li>
+											</ul>
+										</nav>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<article id="pro_lod">
+							<div style="margin: 2em 2em 2em 2em;">
+
+								<div id="toTop">Back to Top</div>
+								<br>
+								Protein Ontology Linked Open Data can be accessed from:
+								<br><br>
+								<ul>
+								<!-- 	<li>
+										<a href="https://sparql.proconsortium.org/virtuoso/fct/">PRO Faceted Browser</a><br><br>
+									</li> -->
+									<li>
+										<a href="rdf_dumps.html">PRO RDF Dumps</a><br><br>
+									</li>
+									<li>
+										<a href="api.html">PRO RESTful APIs</a><br><br>
+									</li>
+									<li>
+										<a href="yasgui.html">PRO SPARQL GUI</a>
+									</li>
+								</ul>
+							</div>
+						</article>
+					</div>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+###########  
+# GQ3. Retrieve all functional annotations for PR:000037190. 
+###########  
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX obo: <http://purl.obolibrary.org/obo/>  
+PREFIX paf: <http://pir.georgetown.edu/pro/paf#>  
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> 
+ 
+SELECT  
+  ?PRO_term   
+  (str(?_Object_synonym) as ?Object_Synonym)  
+  (str(?_Object_term) as ?Object_term)  
+  (str(?_Modifier) as ?Modifier)  
+  (str(?_Relation) as ?Relation)  
+  (str(?_Ontology_ID) as ?Ontology_ID)  
+  (str(?_Ontology_term) as ?Ontology_term)  
+  ?Interaction_with  
+  (group_concat(distinct str(?_Evidence_source) ; separator = ", ") AS ?Evidence_source) 
+WHERE  
+{  
+ GRAPH <http://pir.georgetown.edu/pro/paf>  
+ { 
+    ?PRO_term paf:objectTerm ?_Object_term .  
+    FILTER sameTerm(?PRO_term, obo:PR_000037190)  
+    ?x a rdf:Statement .  
+    ?x rdf:subject ?PRO_term .  
+    ?x rdf:predicate ?xp .  
+    ?xp paf:relation ?_Relation .  
+    ?x rdf:object ?xo .  
+   ?xo paf:ontologyID ?_Ontology_ID .  
+   ?xo paf:ontologyTerm ?_Ontology_term .  
+    ?x paf:evidenceSource ?_Evidence_source .  
+    OPTIONAL { ?x paf:modifier ?_Modifier .}  
+    OPTIONAL { ?x paf:relativeTo ?_Relative_to .}  
+   OPTIONAL { ?x paf:interactionWith ?Interaction_with .}   
+  } 
+ GRAPH <http://purl.obolibrary.org/obo/pr>  
+  { 
+    SELECT ?PRO_term (group_concat(distinct ?_Object_synonym ; separator = " ^|^ ") AS ?_Object_synonym) 
+    { 
+      ?PRO_term   oboInOwl:hasExactSynonym ?_Object_synonym . 
+    } 
+    GROUP BY ?PRO_term 
+ } 
+} 
+

@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Protein Ontology Linked Open Data - LOD Introduction</title>
+	<link href="https://proconsortium.org/styles.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="js/pro_lod.js"></script>
+</head>
+
+<body>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%"">
+		<tr>
+			<td width=" 100%">
+		<table cellSpacing="0" cellPadding="0" width="100%" background="images/bannerBg.png" border="0">
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap><img src="images/empty_line.GIF" width="1"
+						height="3"></td>
+			</tr>
+			<tr>
+				<td><img src="images/empty_line.GIF" width="8" height="76"></td>
+				<td align=center>
+					<img src="images/empty_line.GIF" width="1" height="3"><br />
+					<img src="images/empty_line.GIF" width="3" height="1">
+					<a href="https://proconsortium.org/pro.shtml">
+						<img alt="back to PRO homepage" src="images/PROlogofinalEDGclear.png" width="140" heightxx="42"
+							border="0">
+					</a>
+					<img src="images/empty_line.GIF" width="3" height="1"><br />
+					<img src="images/empty_line.GIF" width="1" height="2">
+				</td>
+				<td width="80%">
+					<table border="0" cellPadding="0" cellSpacing="0" class="PRO_banner1">
+						<tr>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+							<td><img src="images/hm.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro.shtml"
+									class="ProMenu">Home</a></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/browse.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_browse.shtml"
+									class="ProMenu">Browse</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/search.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_search.shtml"
+									class="ProMenu">Search</a></td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sparql.png" width="18">&nbsp;</td>
+							<!-- <td align="center" nowrap><a href="https://proconsortium.org/pro_sparql.shtml"
+									class="ProMenu" style="color:#FF9933;">SPARQL</a> </td>
+							<td></td> -->
+							<td align="center" nowrap><a href="index.html"
+								class="ProMenu" style="color:#FF9933;">LOD</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/sta.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/cgi-bin/sta_pro"
+									class="ProMenu">Statistics</a> </td>
+							<td></td>
+							<td><img src="images/empty_line.GIF" width="5">|<img src="images/empty_line.GIF" width="5">
+							</td>
+							<td><img src="images/download.png" width="18">&nbsp;</td>
+							<td align="center" nowrap><a href="https://proconsortium.org/pro_download.shtml"
+									class="ProMenu">Download</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+
+				<td align="center">
+					<table border="0" cellPadding="3" cellSpacing="3" class="nrm02">
+						<tr>
+							<form name="prosearch" method="get"
+								action="https://proconsortium.org/cgi-bin/textsearch_pro">
+								<td nowrap>
+									<input type="text" name="query0" size="30" class="nrm11"
+										placeholder="PR:000025934, smad">
+								</td>
+								<td><input type="image" name="search" src="images/searchWhite.png">
+									<input type="hidden" name="field0" value="ALLFLDS">
+								</td>
+								<td><img src="images/empty_line.GIF" width="4">
+								</td>
+							</form>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor="#EEEEEE"><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td>
+					<table border="0" cellPadding="3" cellSpacing=3 class=PRO_banner2>
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://proconsortium.org/cgi-bin/race_pro">RACE-PRO</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="http://purl.obolibrary.org/obo/pr/tracker"
+									target=_b>PRO tracker</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a
+									href="https://pir17.georgetown.edu/confluence/display/PROWIKI/Home"
+									target=_b>Wiki</a></TD>
+							<td><img src="images/empty_line.GIF" width="5"></td>
+						</tr>
+					</table>
+				</td>
+				<td bgcolor=#EEEEEE><img src="images/empty_line.GIF" width="3" height="1"></td>
+				<td align=right>
+					<table border="0" cellPadding="3" cellSpacing="3" class="PRO_banner2">
+						<tr>
+							<td></td>
+							<td nowrap>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_cst.shtml">PRO Consortium</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_pub.shtml">Publications</a>
+								<br>
+								<img src="images/whiteDot.gif">&nbsp;<a href="https://proconsortium.org/pro_dcmtt.shtml">Documentation</a></td>
+							<td><img src="images/empty_line.GIF" width="15"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EEEEEE" colspan="8" height="1" nowrap>
+					<img src="images/empty_line.GIF" width="1" height="3"></td>
+			</tr>
+			<tr>
+				<td colspan="8"><img src="images/empty_line.GIF" width="1" height="9"></td>
+			</tr>
+		</table>
+
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0" width="100%" class="nrm04">
+						<tbody>
+							<tr>
+								<td align="center" class="text-primary">
+									<h3><b>Protein Ontology Linked Open Data</b></h3>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="padding: 1em 2em 0em 2em ; margin: 5em 5em 5em 5em auto;">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" class="nrm04">
+							<tbody>
+								<tr>
+									<td>
+										<nav class="navbar navbar-expand-sm navbar-dark">
+											<!-- Links -->
+											<ul class="navbar-nav">
+												<li class="nav-item active">
+													<a class="nav-link" href="index.html">Introduction</a>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">RDF Model
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="rdf.html#uri">PRO Uniform Resource Identifiers (URIs)</a>
+														<a class="dropdown-item" href="rdf.html#pro_cat">Types of PRO Terms</a>
+													</div>
+												</li>
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Dataset Description
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="dataset.html#void">VoID</a>
+														<a class="dropdown-item" href="dataset.html#linkset">Linked Dataset</a>
+													</div>
+												</li>
+
+												<!-- Dropdown -->
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+														data-toggle="dropdown">Data Access
+													</a>
+													<div class="dropdown-menu">
+															<a class="dropdown-item" href="release.html">Data
+																	Dumps</a>
+														<a class="dropdown-item"
+															href="https://sparql.proconsortium.org/virtuoso/fct/">Faceted Browser</a>
+														
+														<a class="dropdown-item"
+															href="api.html">RESTful
+															APIs</a>
+															<a class="dropdown-item" href="yasgui.html">SPARQL
+																GUI</a>
+													</div>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="fair.html">FAIRness</a>
+												</li>
+											</ul>
+										</nav>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<article id="pro_lod">
+							<div style="margin: 2em 2em 2em 2em;">
+									<div class="article_title">Introduction<br></div><br>
+								<div id="toTop">Back to Top</div>
+								<p><b>Protein Ontology</b> <a
+									href="https://www.w3.org/wiki/SweoIG/TaskForces/CommunityProjects/LinkingOpenData">Linked
+									Open Data</a> exposes, shares, and connects pieces of data, information, and
+								knowledge
+								about protein-related entities on the Semantic Web using <a
+									href="http://en.wikipedia.org/wiki/URI">URIs</a> and <a
+									href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>. It
+								provides
+								an alternative way to access the Protein Ontology for querying and integrating with
+								other
+								Linked open datasets. Protein Ontology Linked Open Data is served by an <a
+									href="https://virtuoso.openlinksw.com/universal-server/">OpenLink Virtuoso
+									Universal
+									Server</a>. Data can be browsed via <a
+									href="https://sparql.proconsortium.org/virtuoso/fct/">Faceted
+									Browser</a> interface. Data can be queried using SPARQL via <a
+									href="yasgui.html">YASGUI</a>. RDF data dumps are also available
+								for
+								download. We
+								provide <a href="dataset.html">metadata description</a> for PRO Linked Open Data,
+								which is
+								compliant with the <a
+									href="http://www.w3.org/TR/2015/NOTE-hcls-dataset-20150514/">W3C HCLS
+									specification</a>.
+							</p>
+								<p>As a formal, explicit specification of a domain of interest, ontologies consist of precisely 
+									defined terms and the relationships between them, thus imparting a hierarchical organization. 
+									Ontologies are increasingly being used to define the basic terms and relations in biological domains, 
+									often as the foundation for search, integration and exchange of biological data. Protein Ontology (PRO) provides an ontological representation of protein-related entities. 
+									In addition to the ontology itself, PRO also includes other information, such as ontology annotation and cross-reference information. 
+									In terms of number of classes, PRO is the 5th largest ontology (815 in total) on the BioPortal website.</p>
+								<p>As an evolving extension to the current hypertext document Web, Linked Data is a new
+									paradigm where data are published and interconnected on the Web using open standards
+									such as URIs, HTTP, RDF, OWL, SPARQL etc. This enables data from heterogeneous
+									sources to be shared, integrated and queried in a Web of Data. Tim Berners-Lee in
+									his Web architecture note <a
+										href="https://www.w3.org/DesignIssues/LinkedData.html">Linked Data</a>
+									introduced a set of best practices for publishing and interlinking structured data
+									on the web. They have become well known as the <b><i>Linked Data principles</i></b>:
+									
+									<ul>
+										<li>Use URIs as names of things.</li>
+										<li>Use HTTP URIs, so that people can look up those names.</li>
+										<li>When someone looks up a URI, provide useful information, using the standards
+											(RDF, SPARQL).</li>
+										<li>Include links to other URIs, so that they can discover more things.</li>
+									</ul>
+								</p>
+								<p>The key technologies to support Linked Data include:</p>
+								<ul>
+									<li><b>URI references</b>: used to uniquely identify things in the world. They can be
+										Web documents, real world objects or abstract concepts. By using URIs as global
+										identifiers for entities, hyperlinks can be set between entities in different
+										data sources. All the Linked Data can be connected into a Web of Data. The
+										links between URIs also enable the discovery of new data sources.</li>
+									<li><b>HTTP protocol</b>: provides a universal access mechanism on the Web that allows the
+										URIs to be dereferenced into a description of their referenced things.</li>
+
+									<li><b>RDF</b> (<a href="http://www.w3.org/TR/2014/NOTE-rdf11-primer-20140225/">Resource
+										Description Framework</a>): is a labeled direct graph based data model for
+										publishing data on the Web. The description of a resource in RDF is represented
+										by a number of triples. Each triple consists of three parts: Subject, Predicate
+										and Object. The Subject is the URI identifying the resource being described. The
+										Object can either be a literal value or URI of another resource related to the
+										Subject. The Predicate is a URI that indicates the relationship between the Subject
+										and the Object.</li>
+									<li><b>OWL</b> (Web Ontology Language): RDF can not provide any domain specific terms for describing things in
+										the world and their relationships. This function can be achieved by using SKOS
+										(<a href="http://www.w3.org/TR/skos-reference/">Simple Knowledge Organization
+											System</a>) that provides a vocabulary for expressing conceptual
+										hierarchies, and RDFS (<a href="http://www.w3.org/TR/rdf-schema/">RDF
+											Schema</a>) and OWL (<a href="http://www.w3.org/TR/owl2-overview/">Web
+											Ontology Language</a>) that provide vocabularies for describing a formal,
+										explicit specification of a shared conceptualization of a domain of interest.
+										Using shared vocabularies allows the terms from different vocabularies to be
+										connected.</li>
+									<li><b>SPARQL</b> (<a href="http://www.w3.org/TR/sparql11-overview/">SPARQL Protocol and
+											RDF Query Language</a>) is a semantic query language to retrieve and
+										manipulate data stored in RDF format. It provides language for query (SELECT,
+										CONSTRUCT, ASK, and DESCRIBE) and update (INSERT, DELETE, LOAD, CLEAR, CREATE,
+										DROP, COPY, MOVE, ADD), as well as Federated Query for executing queries
+										distributed over different SPARQL endpoints.</li>
+								</ul>
+								
+
+							</div>
+						</article>
+					</div>
+				</td>
+			</tr>
+		</table>
+</body>
+
+</html>

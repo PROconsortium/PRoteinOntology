@@ -1,0 +1,153 @@
+########### 
+# FQ5. Federated Query: for proteins 'EGFR' 'PKCB' 'PKCT' in ProKinO, get their proteoforms  
+#      that are part of complexes from PRO. 
+#      (Liang-Chin Huang et al.) 
+########### 
+ 
+PREFIX prokino: <http://prokino.uga.edu/prokino#>  
+PREFIX prokino.rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX pro.oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> 
+PREFIX pro.owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX pro.paf: <http://pir.georgetown.edu/pro/paf#> 
+PREFIX pro.pr: <http://purl.obolibrary.org/obo/pr#> 
+PREFIX pro.rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX pro.rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX nextprot: <http://nextprot.org/rdf#> 
+PREFIX nextprot.db: <http://nextprot.org/rdf/db/> 
+PREFIX nextprot.rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX mgi: <http://bio2rdf.org/mgi_vocabulary:> 
+PREFIX mgi.affy: <http://bio2rdf.org/affymetrix_vocabulary:> 
+PREFIX mgi.dcterms: <http://purl.org/dc/terms/> 
+PREFIX mgi.go: <http://bio2rdf.org/goa_vocabulary:> 
+PREFIX mgi.owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX mgi.rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX pro.obo: <http://purl.obolibrary.org/obo/> 
+ 
+SELECT DISTINCT 
+(STR(?genename) AS ?Protein) 
+(STR(?uniprotid) AS ?UniProt_ID) 
+(STR(?pro_organism_gene_id) AS ?PRO_Organism_Gene) 
+(STR(?pro_gene_id) AS ?PRO_Gene) 
+(STR(?pro_organism_modification_id) AS ?PRO_Organism_Modification) 
+(STR(?pro_organism_complex_id) AS ?PRO_Organism_Complex) 
+(STR(?complex_label) AS ?Complex_Label) 
+FROM NAMED <http://prokino.uga.edu> 
+FROM NAMED <http://purl.obolibrary.org/obo/pr> 
+WHERE 
+{ 
+	#SPARQL Endpoint: PRO 
+	SERVICE <http://sparql.proconsortium.org/virtuoso/sparql> 
+	{ 
+    	GRAPH <http://purl.obolibrary.org/obo/pr> 
+        { 
+			SELECT DISTINCT 
+				?genename 
+				?uniprotid 
+				#Replace "http://purl.obolibrary.org/obo/PR_XXXXXXXXX" with "PR:XXXXXXXXX" for PRO's ID 
+      			(REPLACE(STRAFTER(STR(?pro_organism_gene),"/obo/"),"_",":") AS ?pro_organism_gene_id) 
+      			(REPLACE(STRAFTER(STR(?pro_gene),"/obo/"),"_",":") AS ?pro_gene_id) 
+				(REPLACE(STRAFTER(STR(?pro_organism_modification),"/obo/"),"_",":") AS ?pro_organism_modification_id) 
+      			(REPLACE(STRAFTER(STR(?pro_organism_complex),"/obo/"),"_",":") AS ?pro_organism_complex_id) 
+				?complex_label 
+			WHERE 
+			{ 
+				#Define protein kinases by ProKinO and use UniProt ID (accession number) as backbone 
+				{ 
+					SELECT DISTINCT 
+						?genename 
+						?uniprotid 
+						#Use PRO term (organism-gene) to connect the data obtained from PRO 
+						?pro_organism_gene	 
+					WHERE 
+					{ 
+						#SPARQL Endpoint: ProKinO 
+						SERVICE <http://vulcan.cs.uga.edu/sparql> 
+						{ 
+							GRAPH <http://prokino.uga.edu> 
+	                        { 
+								SELECT DISTINCT 
+									?genename 
+									?uniprotid 
+									#Add a prefix to a UniProt ID and let it be the organism gene ID in PRO 
+                					(CONCAT("http://purl.obolibrary.org/obo/PR_",STR(?uniprotid)) AS ?pro_organism_gene) 
+								WHERE 
+								{ 
+									#Define the genes of interest 
+									#In low level query, we only focus on some genes 
+									VALUES ?query_genes {'EGFR' 'PKCB' 'PKCT'} 
+									 
+									#Get human protein  
+									?gene prokino.rdf:type prokino:Protein . 
+									?gene prokino:presentIn prokino:Human . 
+									?gene prokino:hasPrimaryName ?genename . 
+									?gene prokino:hasDbXref ?protid . 
+									FILTER(STR(?genename) = ?query_genes) 
+									 
+									#Get primary UniProt ID 
+									?protid prokino:isPrimaryUniprotId ?isprimaryuniprotid . 
+									?protid prokino:hasIdentifier ?uniprotid . 
+									#A protein also has secondary accession numbers, so it needs to be filtered 
+									FILTER REGEX(?isprimaryuniprotid,"true") 
+								} 
+						   	} 
+						} 
+					} 
+				} 
+				#Appending Information: PRO 
+				OPTIONAL 
+				{ 
+					#Use PRO term (gene) to connect the data obtained from PRO 
+					{ 
+						SELECT DISTINCT 
+							?pro_organism_gene 
+							?pro_gene 
+						WHERE 
+						{ 
+							?pro_organism_gene pro.rdfs:comment ?category . 
+							?pro_organism_gene pro.rdfs:subClassOf ?pro_gene . 
+							 
+							?pro_gene pro.rdfs:comment ?parentcategory . 
+							FILTER REGEX(?parentcategory,"Category=gene") 
+						} 
+					} 
+					#PRO organism-complex, which is under organism-modification, instead of gene 
+					OPTIONAL 
+					{ 
+						SELECT DISTINCT 
+							?pro_gene 
+							?pro_organism_modification 
+							?pro_organism_complex 
+							?complex_label 
+						WHERE 
+						{ 
+							?pro_gene pro.rdfs:comment ?parentcategory . 
+							FILTER REGEX(?parentcategory,"Category=gene") 
+							 
+							?pro_organism_modification pro.rdfs:subClassOf+ ?pro_gene . 
+							 
+							#Appending complex information 
+							{ 
+								SELECT DISTINCT 
+									?pro_organism_modification 
+									?pro_organism_complex 
+									?complex_label 
+								WHERE 
+								{ 
+									?pro_organism_complex pro.rdfs:comment ?category . 
+									FILTER REGEX(?category,"Category=organism-complex") 
+ 
+									?pro_organism_complex pro.rdfs:label ?complex_label . 
+									#extract has_component(RO_0002180) relationship 
+									?pro_organism_complex pro.rdfs:subClassOf ?x . 
+									?x pro.owl:onProperty pro.obo:RO_0002180 . 
+									?x pro.owl:onClass ?pro_organism_modification . 
+								} 
+							} 
+						} 
+					} 
+				} 
+			} 
+	     } 
+	} 
+} 
+ORDER BY ?genename ?complex_label 
