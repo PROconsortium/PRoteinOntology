@@ -342,6 +342,10 @@ PREFIX pr: <http://purl.obolibrary.org/obo/pr#>
                     BIND(CONCAT('"', STR( ?exactSyn ),'"', ' EXACT ', strafter(str(?synonymType), '#'), ' [', ?dbxref, ']')  AS ?synonym) . 
             }   
             UNION {
+                ?PRO_term oboInOwl:hasExactSynonym ?exactSyn .
+                BIND(CONCAT('"', STR( ?exactSyn ),'"', ' EXACT')  AS ?synonym)  .
+            }
+            UNION {
                 ?xxsynonyms 
                     a owl:Axiom ;
                     owl:annotatedProperty oboInOwl:hasRelatedSynonym ;
@@ -349,24 +353,25 @@ PREFIX pr: <http://purl.obolibrary.org/obo/pr#>
                     owl:annotatedTarget ?relatedSyn .
                     OPTIONAL {?xxsynonyms oboInOwl:hasSynonymType ?synonymType. }
                     OPTIONAL {?xxsynonyms oboInOwl:hasDbXref ?dbxref .}
-                    BIND(CONCAT('"', STR( ?relatedSyn ),'"', ' RELATED ', '[', ?dbxref, ']')  AS ?synonym)  .
+                    BIND(CONCAT('"', STR( ?relatedSyn ),'"', ' RELATED Gene-based ', '[', ?dbxref, ']')  AS ?synonym)  .
             }
             UNION {
-                []
-                    oboInOwl:hasDbXref ?dbxref ;
-                    a owl:Axiom ;
-                    owl:annotatedProperty oboInOwl:hasBroadSynonym ;
-                    owl:annotatedSource ?PRO_term ;
-                    owl:annotatedTarget ?broadSyn .
-                    BIND(CONCAT('"', STR( ?broadSyn ), '"', ' BROAD ', '[', ?dbxref, ']')  AS ?synonym)  .
+                [ a                      owl:Axiom ;
+                  oboInOwl:hasDbXref     ?dbxref ;
+                  owl:annotatedProperty  oboInOwl:hasBroadSynonym ;
+                  owl:annotatedSource    ?PRO_term ;
+                  owl:annotatedTarget    ?broadSyn
+                ] .
+                BIND(CONCAT('"', STR( ?broadSyn ), '"', ' BROAD ', '[', ?dbxref, ']')  AS ?synonym)  .
             }
             UNION {
-                []
-                    oboInOwl:hasDbXref ?dbxref ;
-                    a owl:Axiom ;
-                    owl:annotatedProperty oboInOwl:hasNarrowSynonym ;
-                    owl:annotatedSource ?PRO_term ;
-                    owl:annotatedTarget ?narrowSyn .
+                          [ a    owl:Axiom ;
+                          oboInOwl:hasDbXref       ?dbxref ;
+                          oboInOwl:hasSynonymType  pr:Gene-based ;
+                          owl:annotatedProperty    oboInOwl:hasNarrowSynonym ;
+                          owl:annotatedSource      ?PRO_term ;
+                          owl:annotatedTarget      ?narrowSyn
+                        ] .
                     BIND(CONCAT('"', STR( ?narrowSyn ), '"', ' NARROW ', '[', ?dbxref, ']')  AS ?synonym)  .
             }
         }
@@ -699,24 +704,25 @@ GROUP_CONCAT(DISTINCT ?synonym; separator=' ^|^ ') as ?synonym
               owl:annotatedTarget ?relatedSyn .
               OPTIONAL {?xr oboInOwl:hasSynonymType ?synonymType. }
               OPTIONAL {?xr oboInOwl:hasDbXref ?dbxref .}
-              BIND(CONCAT('"', STR( ?relatedSyn ),'"', ' RELATED ', '[', ?dbxref, ']')  AS ?synonym)  .
+              BIND(CONCAT('"', STR( ?relatedSyn ),'"', ' RELATED Gene-based ', '[', ?dbxref, ']')  AS ?synonym)  .
     }
     UNION {
-            []
-        oboInOwl:hasDbXref ?dbxref ;
-        a owl:Axiom ;
-        owl:annotatedProperty oboInOwl:hasBroadSynonym ;
-        owl:annotatedSource ?PRO_term ;
-        owl:annotatedTarget ?broadSyn .
+                [ a                      owl:Axiom ;
+              oboInOwl:hasDbXref     ?dbxref ;
+              owl:annotatedProperty  oboInOwl:hasBroadSynonym ;
+              owl:annotatedSource    ?PRO_term ;
+              owl:annotatedTarget    ?broadSyn
+            ] .
             BIND(CONCAT('"', STR( ?broadSyn ), '"', ' BROAD ', '[', ?dbxref, ']')  AS ?synonym)  .
     }
     UNION {
-            []
-        oboInOwl:hasDbXref ?dbxref ;
-        a owl:Axiom ;
-        owl:annotatedProperty oboInOwl:hasNarrowSynonym ;
-        owl:annotatedSource ?PRO_term ;
-        owl:annotatedTarget ?narrowSyn .
+            [ a      owl:Axiom ;
+          oboInOwl:hasDbXref       ?dbxref ;
+          oboInOwl:hasSynonymType  pr:Gene-based ;
+          owl:annotatedProperty    oboInOwl:hasNarrowSynonym ;
+          owl:annotatedSource      ?PRO_term ;
+          owl:annotatedTarget      ?narrowSyn
+        ] .
         BIND(CONCAT('"', STR( ?narrowSyn ),'"', ' NARROW ', '[', ?dbxref, ']')  AS ?synonym)  .
     }
 }
@@ -1159,7 +1165,7 @@ class SparqlSearch:
         #print(query)
         url = self.conf.cfg['sparql_endpoint']
         params = {'query': query, "format": "text/tab-separated-values", "timeout" : 0, "debug": "on"}
-        response = requests.get(url, params=params)
+        response = requests.post(url, data=params)
         error = Error
         result = []
         if (response.status_code != 200):
@@ -1167,6 +1173,7 @@ class SparqlSearch:
             error.message = response.text
         else:
             error = None
+            #print(response.txt)
             reader = csv.DictReader(response.text.split('\n'), delimiter='\t')
 
             for line in reader:
@@ -1339,7 +1346,7 @@ class SparqlSearch:
         #print(query)
         url = self.conf.cfg['sparql_endpoint']
         params = {'query': query, "format": "text/tab-separated-values", "timeout": 0, "debug": "on"}
-        response = requests.get(url, params=params)
+        response = requests.post(url, data=params)
         error = Error
         result = []
         if (response.status_code != 200):
@@ -1387,7 +1394,7 @@ class SparqlSearch:
         #print(query)
         url = self.conf.cfg['sparql_endpoint']
         params = {'query': query, "format": "text/tab-separated-values", "timeout": 0, "debug": "on"}
-        response = requests.get(url, params=params)
+        response = requests.post(url, data=params)
         error = Error
         result = []
         if (response.status_code != 200):
@@ -1435,7 +1442,7 @@ class SparqlSearch:
         #print(query)
         url = self.conf.cfg['sparql_endpoint']
         params = {'query': query, "format": "text/tab-separated-values", "timeout": 0, "debug": "on"}
-        response = requests.get(url, params=params)
+        response = requests.post(url, data=params)
         error = Error
         result = []
         if (response.status_code != 200):
@@ -1482,7 +1489,7 @@ class SparqlSearch:
         query = query.replace("VALUES", VALUES)
         url = self.conf.cfg['sparql_endpoint']
         params = {'query': query, "format": "text/tab-separated-values", "timeout": 0, "debug": "on"}
-        response = requests.get(url, params=params)
+        response = requests.post(url, data=params)
         error = Error
         result = []
         if (response.status_code != 200):
@@ -1526,7 +1533,7 @@ class SparqlSearch:
         #print(query)
         url = self.conf.cfg['sparql_endpoint']
         params = {'query': query, "format": "text/tab-separated-values", "timeout": 0, "debug": "on"}
-        response = requests.get(url, params=params)
+        response = requests.post(url, data=params)
         error = Error
         result = []
         if (response.status_code != 200):
@@ -1584,7 +1591,7 @@ class SparqlSearch:
         #print(query)
         url = self.conf.cfg['sparql_endpoint']
         params = {'query': query, "format": "text/tab-separated-values", "timeout": 0, "debug": "on"}
-        response = requests.get(url, params=params)
+        response = requests.post(url, data=params)
         error = Error
         result = []
         if (response.status_code != 200):

@@ -140,7 +140,7 @@ class PROTermSerializer(serializers.Serializer):
     pirsfID = serializers.CharField(required=False, allow_blank=True)
     pmID = serializers.ListField(required=False)
     reactomeID = serializers.ListField(required=False)
-    synonym = serializers.CharField(required=False, allow_blank=True)
+    synonym = serializers.CharField(required=False)
     taxonID = serializers.CharField(required=False)
     uniprotKBID = serializers.ListField(required=False)
 

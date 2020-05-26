@@ -332,7 +332,7 @@ def searchAndRenderResponse(searchParameter, restriction):
         return Response(serializer.data)
     else:
         proTerms, error = sparqlSearch.proSearch(searchParameter, restriction)
-        print(proTerms[0])
+        #print(proTerms[0])
         if error == None:
             serializer = PROTermSerializer(proTerms, many=True)
         else:
