@@ -3,7 +3,7 @@ chardet==3.0.4
 defusedxml==0.5.0
 Django==1.11.29
 django-cors-headers==2.4.0
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 djangorestframework-xml==1.4.0
 get==2018.11.19
 httpie==1.0.3
