@@ -10,7 +10,7 @@ httpie==3.1.0
 idna==2.8
 post==2018.11.20
 public==2018.11.20
-Pygments==2.7.4
+Pygments==2.15.0
 pytz==2018.7
 query-string==2018.11.20
 request==2018.11.20
