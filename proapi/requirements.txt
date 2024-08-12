@@ -7,7 +7,7 @@ djangorestframework==3.15.2
 djangorestframework-xml==1.4.0
 get==2018.11.19
 httpie==3.1.0
-idna==2.8
+idna==3.7
 post==2018.11.20
 public==2018.11.20
 Pygments==2.15.0
