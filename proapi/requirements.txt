@@ -14,5 +14,5 @@ Pygments==2.15.0
 pytz==2018.7
 query-string==2018.11.20
 request==2018.11.20
-requests==2.32.4
+requests==2.33.0
 urllib3==2.6.3
